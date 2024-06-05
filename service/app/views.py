@@ -34,8 +34,9 @@ def transform_csv(request):
     featureTarget = data.get('featureTarget')
     fileName = data.get('fileName')
     create_csv(csvData, fileName)
-    create_tree(fileName, featureTarget)
-    return Response({"message": "Creation Completed!"})
+    metrics = create_tree(fileName, featureTarget)
+    print(metrics)
+    return Response(metrics)
 
 
 def create_csv(data, file):
@@ -100,9 +101,21 @@ def create_tree(file_name, featureTarget):
         print("Etiquetas reales:", y_test.tolist())
         print("\nVisualizando el árbol original...\n")
 
+        metrics = {
+            "accuracy": accuracy,
+            "precision": precision,
+            "recall": recall,
+            "f1": f1,
+            "conf_matrix": conf_matrix,
+            "features": y_pred,
+            "real_features": y_test.tolist(),
+            "is_balanced": dt.is_balanced(),
+        }
+        return metrics
+
     # ---------------------------------------------------------
 
-    test_tree(dt, file_name, X_test, y_test)
+    treeMetrics = test_tree(dt, file_name, X_test, y_test)
 
     # Guardar el árbol en un archivo JSON
     TreePersistence.save_tree(dt, f'{file_name}.json')
@@ -114,3 +127,5 @@ def create_tree(file_name, featureTarget):
     nuevo_dt.set_tree(nueva_raiz)
 
     test_tree(nuevo_dt, file_name, X_test, y_test)
+
+    return treeMetrics

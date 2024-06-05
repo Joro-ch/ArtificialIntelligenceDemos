@@ -1,0 +1,17 @@
+server(started, 1717621943).
+/*Wed Jun 05 15:12:23 2024*/ request(1, 1717621943.145, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),content_type('application/json'),user_agent('insomnia/9.2.0'),content_length(91)]).
+completed(1, 0.015625, 19, 200, ok).
+/*Wed Jun 05 15:12:40 2024*/ request(2, 1717621960.606, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),content_type('application/json'),user_agent('insomnia/9.2.0'),content_length(54)]).
+completed(2, 0.0, 107, 500, error(":</2: Type error: `dict-data' expected, found `\"pregunta\"' (a string)")).
+/*Wed Jun 05 15:12:49 2024*/ request(3, 1717621969.949, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),content_type('application/json'),user_agent('insomnia/9.2.0'),content_length(55)]).
+completed(3, 0.0, 476, 500, error("goal unexpectedly failed: user:handle_consulta([protocol(http),peer(ip(127,0,0,1)),pool(client('httpd@8001',user:http_dispatch,<stream>(0000023a6a0db700),<stream>(0000023a6a0dc910))),input(<stream>(0000023a6a0db700)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),content_type('application/json'),user_agent('insomnia/9.2.0'),accept([media(_3154/_3156,[],1.0,[])]),content_length(55)])")).
+/*Wed Jun 05 15:13:15 2024*/ request(4, 1717621995.065, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),content_type('application/json'),user_agent('insomnia/9.2.0'),content_length(89)]).
+completed(4, 0.0, 106, 500, error("Stream <stream>(0000023a6a0dda10):2:30 Syntax error: json(illegal_json)")).
+/*Wed Jun 05 15:13:18 2024*/ request(5, 1717621998.164, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),content_type('application/json'),user_agent('insomnia/9.2.0'),content_length(89)]).
+completed(5, 0.0, 106, 500, error("Stream <stream>(0000023a6a0dc6f0):2:30 Syntax error: json(illegal_json)")).
+/*Wed Jun 05 15:13:36 2024*/ request(6, 1717622016.826, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),content_type('application/json'),user_agent('insomnia/9.2.0'),content_length(87)]).
+completed(6, 0.0, 106, 500, error("Stream <stream>(0000023a6a0dd190):2:30 Syntax error: json(illegal_json)")).
+/*Wed Jun 05 15:13:42 2024*/ request(7, 1717622022.463, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),content_type('application/json'),user_agent('insomnia/9.2.0'),content_length(89)]).
+completed(7, 0.0, 19, 200, ok).
+/*Wed Jun 05 15:13:45 2024*/ request(8, 1717622025.927, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),content_type('application/json'),user_agent('insomnia/9.2.0'),content_length(89)]).
+completed(8, 0.0, 19, 200, ok).
