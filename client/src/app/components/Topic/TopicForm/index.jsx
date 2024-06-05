@@ -31,21 +31,23 @@ const TopicForm = ({ values, questionTarget, fileName }) => {
     }
 
     return (
-        <form className="flex flex-col gap-5 w-1/2" onSubmit={onSubmit}>
-            {Object.keys(values).map((key) => (
-                <>
-                    {key != questionTarget && (
-                        <span className="flex gap-5">
-                            {key}
-                            <select className="w-full text-black" name={key.toLowerCase()}>
-                                {values[key].map((option, index) =>
-                                    <option key={index} value={option}> {option} </option>
-                                )}
-                            </select>
-                        </span>
-                    )}
-                </>
-            ))}
+        <form className="flex flex-col gap-5 w-1/2 " onSubmit={onSubmit}>
+            <div className="flex flex-col gap-5 max-h-[45vh] overflow-auto">
+                {Object.keys(values).map((key) => (
+                    <>
+                        {key != questionTarget && (
+                            <span className="flex gap-5">
+                                {key}
+                                <select className="w-full text-black" name={key.toLowerCase()}>
+                                    {values[key].sort().map((option, index) =>
+                                        <option key={index} value={option}> {option} </option>
+                                    )}
+                                </select>
+                            </span>
+                        )}
+                    </>
+                ))}
+            </div>
             <button className="bg-green-300 rounded" type="submit">
                 Do the Question
             </button>
