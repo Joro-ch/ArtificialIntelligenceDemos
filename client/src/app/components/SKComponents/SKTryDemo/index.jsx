@@ -21,14 +21,15 @@ const SKTryDemo = ({ }) => {
         if (!form.files[0]) return;
         const fileName = form.files[0].name;
         const nameWithoutExtension = fileName.substring(0, fileName.lastIndexOf("."));
-        const newFileName = nameWithoutExtension + ".json";
+        const newFileName = nameWithoutExtension;
         setFileName(newFileName);
 
         Papa.parse(form.files[0], {
             header: false,
             skipEmptyLines: true,
             complete: function (results) {
-                setCSVData(results.data);
+                const copyData = [...results.data];
+                setCSVData(copyData);
                 const header = results.data.shift();
                 setQuestionTarget(header[0]);
                 const output = results.data[0].map((_, colIndex) => results.data.map(row => row[colIndex]));
@@ -39,7 +40,7 @@ const SKTryDemo = ({ }) => {
                         ...newDic,
                         [header[index]]: a,
                     }
-                })
+                });
                 setValues(newDic);
             },
         });
@@ -50,6 +51,21 @@ const SKTryDemo = ({ }) => {
         const newOption = e.target.value;
         setQuestionTarget(newOption);
     };
+
+    const onEnviar = async () => {
+        const response = await fetch('http://127.0.0.1:8000/api/transformCSV/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ csv: csvData, featureTarget: questionTarget, fileName: fileName }),
+        });
+
+        if (response.ok) {
+            const result = await response.json();
+            console.log(result)
+        };
+    }
 
     return (
         <section className="mx-10 mt-10">
@@ -93,6 +109,9 @@ const SKTryDemo = ({ }) => {
                     <TopicForm values={values} questionTarget={questionTarget} fileName={fileName}/>
                 )}
             </div>
+            <button onClick={onEnviar}> 
+                enviar 
+            </button>
         </section>
     )
 }
