@@ -1,32 +1,33 @@
 "use client";
 import { useState } from "react";
 
-const TopicForm = ({ values, questionTarget }) => {
+const TopicForm = ({ values, questionTarget, fileName }) => {
     const [answer, setAnswer] = useState("");
-
-    console.log(values)
 
     const onSubmit = async (e) => {
         e.preventDefault();
         const form = e.target;
-        const outlook = form.outlook.value;
-        const temperature = form.temperature.value;
-        const humidity = form.humidity.value;
-        const wind = form.wind.value;
-        const question = [outlook, temperature, humidity, wind];
+        const question = [];
+
+        Object.keys(values).map((key) => {
+            if (key != questionTarget) {
+                const selector = form[key.toLowerCase()];
+                question.push(selector.value);
+            }
+        });
 
         const response = await fetch('/api/question', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ file_name: 'playTennis.json', pregunta: question }),
+            body: JSON.stringify({ file_name: fileName, pregunta: question }),
         });
 
         if (response.ok) {
             const result = await response.json();
             setAnswer(result.respuesta);
-        }
+        };
     }
 
     return (
@@ -37,8 +38,8 @@ const TopicForm = ({ values, questionTarget }) => {
                         <span className="flex gap-5">
                             {key}
                             <select className="w-full text-black" name={key.toLowerCase()}>
-                                {values[key].map((a) =>
-                                    <option> {a} </option>
+                                {values[key].map((option, index) =>
+                                    <option key={index} value={option}> {option} </option>
                                 )}
                             </select>
                         </span>

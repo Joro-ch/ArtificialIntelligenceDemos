@@ -14,9 +14,16 @@ const SKTryDemo = ({ }) => {
     const [csvData, setCSVData] = useState([]);
     const [values, setValues] = useState({});
     const [questionTarget, setQuestionTarget] = useState("");
+    const [fileName, setFileName] = useState("");
 
     const changeHandler = (e) => {
         const form = e.target;
+        if (!form.files[0]) return;
+        const fileName = form.files[0].name;
+        const nameWithoutExtension = fileName.substring(0, fileName.lastIndexOf("."));
+        const newFileName = nameWithoutExtension + ".json";
+        setFileName(newFileName);
+
         Papa.parse(form.files[0], {
             header: false,
             skipEmptyLines: true,
@@ -83,7 +90,7 @@ const SKTryDemo = ({ }) => {
                     className="h-[50vh] rounded-t w-full object-cover w-[350px] bg-[#323C4F]"
                 />
                 {Object.keys(values).length > 0 && (
-                    <TopicForm values={values} questionTarget={questionTarget}/>
+                    <TopicForm values={values} questionTarget={questionTarget} fileName={fileName}/>
                 )}
             </div>
         </section>
