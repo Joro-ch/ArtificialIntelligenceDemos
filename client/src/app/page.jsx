@@ -1,7 +1,7 @@
 import ToolCard from '@/app/components/ToolCard'
 import { DEMOS } from './constants/DEMOS';
 
-export default function Home() {
+const Home = () => {
   return (
     <main>
       <article className="px-10 pt-10 text-white mb-5">
@@ -23,3 +23,5 @@ export default function Home() {
     </main>
   );
 }
+
+export default Home;
