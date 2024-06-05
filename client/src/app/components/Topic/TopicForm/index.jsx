@@ -1,8 +1,10 @@
 "use client";
 import { useState } from "react";
 
-const TopicForm = ({  }) => {
+const TopicForm = ({ values, questionTarget }) => {
     const [answer, setAnswer] = useState("");
+
+    console.log(values)
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -29,36 +31,20 @@ const TopicForm = ({  }) => {
 
     return (
         <form className="flex flex-col gap-5 w-1/2" onSubmit={onSubmit}>
-            <span className="flex gap-5">
-                {"Outlook"}
-                <select className="w-full text-black" name="outlook">
-                    <option> Sunny </option>
-                    <option> Overcast </option>
-                    <option> Rain </option>
-                </select>
-            </span>
-            <span className="flex gap-5">
-                {"Temperature"}
-                <select className="w-full text-black" name="temperature">
-                    <option> Hot </option>
-                    <option> Mild </option>
-                    <option> Cool </option>
-                </select>
-            </span>
-            <span className="flex gap-5">
-                {"Humidity"}
-                <select className="w-full text-black" name="humidity">
-                    <option> High </option>
-                    <option> Normal </option>
-                </select>
-            </span>
-            <span className="flex gap-5">
-                {"Wind"}
-                <select className="w-full text-black" name="wind">
-                    <option> Strong </option>
-                    <option> Weak </option>
-                </select>
-            </span>
+            {Object.keys(values).map((key) => (
+                <>
+                    {key != questionTarget && (
+                        <span className="flex gap-5">
+                            {key}
+                            <select className="w-full text-black" name={key.toLowerCase()}>
+                                {values[key].map((a) =>
+                                    <option> {a} </option>
+                                )}
+                            </select>
+                        </span>
+                    )}
+                </>
+            ))}
             <button className="bg-green-300 rounded" type="submit">
                 Do the Question
             </button>

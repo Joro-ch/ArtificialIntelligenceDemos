@@ -11,24 +11,37 @@ const DATASETS = [{
 }]
 
 const SKTryDemo = ({ }) => {
-
-    //State to store the values
+    const [csvData, setCSVData] = useState([]);
     const [values, setValues] = useState({});
+    const [questionTarget, setQuestionTarget] = useState("");
 
     const changeHandler = (e) => {
-        // Passing file data (event.target.files[0]) to parse using Papa.parse
         const form = e.target;
         Papa.parse(form.files[0], {
             header: false,
             skipEmptyLines: true,
             complete: function (results) {
-
-                const header = results.data[0];
-                if (typeof header === 'object' && header !== null) {
-                    setValues(header);
-                };
+                setCSVData(results.data);
+                const header = results.data.shift();
+                setQuestionTarget(header[0]);
+                const output = results.data[0].map((_, colIndex) => results.data.map(row => row[colIndex]));
+                let newDic = {};
+                output.map((row, index) => {
+                    const a = ([... new Set(row)]);
+                    newDic = {
+                        ...newDic,
+                        [header[index]]: a,
+                    }
+                })
+                setValues(newDic);
             },
         });
+    };
+
+    const handleOnChangeTarget = (e) => {
+        e.preventDefault();
+        const newOption = e.target.value;
+        setQuestionTarget(newOption);
     };
 
     return (
@@ -50,7 +63,16 @@ const SKTryDemo = ({ }) => {
                     accept=".csv"
                     onChange={changeHandler}
                 />
-                <h5> Target: {DATASETS[0].target} </h5>
+                {questionTarget && (
+                    <span className="flex gap-3">
+                        Target: 
+                        <select className="text-black" onChange={handleOnChangeTarget}>
+                            {Object.keys(values).map((value, index) =>
+                                <option key={index}> {value} </option>
+                            )}
+                        </select>
+                    </span>
+                )}
             </div>
             <div className="flex gap-10">
                 <Image
@@ -60,7 +82,9 @@ const SKTryDemo = ({ }) => {
                     alt={"SciKitty Logo"}
                     className="h-[50vh] rounded-t w-full object-cover w-[350px] bg-[#323C4F]"
                 />
-                <TopicForm />
+                {Object.keys(values).length > 0 && (
+                    <TopicForm values={values} questionTarget={questionTarget}/>
+                )}
             </div>
         </section>
     )
