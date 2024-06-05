@@ -8,7 +8,7 @@ export default function NavBar({ }) {
                     <Link href={"/"}> Tools </Link>
                 </li>
                 <li className='hover:text-gray-200'>
-                    <Link href={"/AboutAs"}> About As </Link>
+                    <Link href={"/AboutUs"}> About Us </Link>
                 </li>
             </ul>
         </nav>
