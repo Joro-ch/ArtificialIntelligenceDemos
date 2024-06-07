@@ -32,6 +32,9 @@ const TopicForm = ({ values, questionTarget, fileName }) => {
 
     return (
         <form className="flex flex-col gap-5 w-1/2 " onSubmit={onSubmit}>
+            <p className="mb-3">
+                3. Try changing feature parameters to form a question for the Decision Tree.
+            </p>
             <div className="flex flex-col gap-5 max-h-[45vh] overflow-auto">
                 {Object.keys(values).map((key) => (
                     <>
@@ -48,10 +51,14 @@ const TopicForm = ({ values, questionTarget, fileName }) => {
                     </>
                 ))}
             </div>
-            <button className="bg-green-300 rounded" type="submit">
-                Do the Question
+            <button className="bg-green-500 rounded p-1" type="submit">
+                🚀 Send and Do the Question 🚀
             </button>
-            <h5> Answer: {answer} </h5>
+            {answer && (
+                <h5 className="text-xl text-center"> 
+                    Answer: {answer} 
+                </h5>
+            )}
         </form>
     )
 }
