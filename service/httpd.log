@@ -15,3 +15,12 @@ completed(6, 0.0, 106, 500, error("Stream <stream>(0000023a6a0dd190):2:30 Syntax
 completed(7, 0.0, 19, 200, ok).
 /*Wed Jun 05 15:13:45 2024*/ request(8, 1717622025.927, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),content_type('application/json'),user_agent('insomnia/9.2.0'),content_length(89)]).
 completed(8, 0.0, 19, 200, ok).
+server(started, 1717738786).
+/*Thu Jun 06 23:39:45 2024*/ request(1, 1717738785.876, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(60)]).
+completed(1, 0.0, 109, 500, error("open/3: source_sink `mamiferos' does not exist (No such file or directory)")).
+/*Thu Jun 06 23:39:54 2024*/ request(2, 1717738794.989, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(60)]).
+completed(2, 0.0, 109, 500, error("open/3: source_sink `mamiferos' does not exist (No such file or directory)")).
+/*Thu Jun 06 23:40:37 2024*/ request(3, 1717738837.941, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(60)]).
+completed(3, 0.0, 109, 500, error("open/3: source_sink `mamiferos' does not exist (No such file or directory)")).
+/*Thu Jun 06 23:41:11 2024*/ request(4, 1717738871.024, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(60)]).
+completed(4, 0.0, 109, 500, error("open/3: source_sink `mamiferos' does not exist (No such file or directory)")).

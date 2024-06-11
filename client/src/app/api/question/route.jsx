@@ -1,7 +1,7 @@
 
 export async function POST(req) {
     const { file_name, pregunta } = await req.json();
-    const response = await fetch(`http://127.0.0.1:8000/consulta`, {
+    const response = await fetch(`http://127.0.0.1:8001/consulta`, {
         method: 'Post',
         headers: {
             'Content-Type': 'application/json',

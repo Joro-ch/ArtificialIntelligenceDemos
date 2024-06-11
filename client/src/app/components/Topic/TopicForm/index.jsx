@@ -8,6 +8,7 @@ const TopicForm = ({ values, questionTarget, fileName }) => {
         e.preventDefault();
         const form = e.target;
         const question = [];
+        console.log(fileName)
 
         Object.keys(values).map((key) => {
             if (key != questionTarget) {
@@ -26,6 +27,7 @@ const TopicForm = ({ values, questionTarget, fileName }) => {
 
         if (response.ok) {
             const result = await response.json();
+            console.log(result)
             setAnswer(result.respuesta);
         };
     }
