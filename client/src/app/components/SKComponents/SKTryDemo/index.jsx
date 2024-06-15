@@ -5,14 +5,18 @@ import SendCSV from "../SendCSV";
 import Metrics from "../Metrics";
 import DoQuestion from "../DoQuestion";
 import { useState } from "react";
+import { toast } from "sonner";
+import { DATASETS } from "@/app/constants/DATASETS";
 
 const SKTryDemo = ({ }) => {
     const [csvData, setCSVData] = useState([]);
     const [values, setValues] = useState({});
     const [questionTarget, setQuestionTarget] = useState("");
+    const [criterion, setCriterion] = useState("entropy");
     const [fileName, setFileName] = useState("");
-    const [dataSets, setDataSets] = useState([]);
+    const [dataSets, setDataSets] = useState(DATASETS);
     const [metrics, setMetrics] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     const changeHandler = (e) => {
         const form = e.target;
@@ -45,8 +49,7 @@ const SKTryDemo = ({ }) => {
                 setValues(newDic);
             },
         });
-
-        setDataSets([...dataSets, newDataSet])
+        setDataSets([...dataSets, newDataSet]);
     };
 
     const handleOnChangeTarget = (e) => {
@@ -55,32 +58,69 @@ const SKTryDemo = ({ }) => {
         setQuestionTarget(newOption);
     };
 
-    const onEnviar = async () => {
-        const response = await fetch('http://127.0.0.1:8000/api/transformCSV/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ csv: csvData, featureTarget: questionTarget, fileName: fileName }),
-        });
+    const handleOnChangeCriterion = (e) => {
+        e.preventDefault();
+        const newOption = e.target.value;
+        const lowerCase = newOption.toLowerCase();
+        setCriterion(lowerCase);
+    };
 
-        if (response.ok) {
-            const result = await response.json();
-            console.log(result)
-            setMetrics(result)
-        };
+    const onEnviar = async () => {
+        if (fileName == "") return;
+        try {
+            setLoading(true);
+            const response = await fetch('http://127.0.0.1:8000/api/transformCSV/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ csv: csvData, featureTarget: questionTarget, fileName: fileName }),
+            });
+
+            if (response.ok) {
+                const result = await response.json();
+                console.log(result)
+                setMetrics(result)
+            }
+        }
+        catch (e) {
+            if (e instanceof TypeError) {
+                toast.error('Error!', { description: "Server not online!" })
+            }
+            else {
+                toast.error('Error!', { description: e.message })
+            }
+        }
+        finally {
+            setLoading(false);
+        }
+    }
+
+    const handleOnSelectSavedDataSet = (e) => {
+        e.preventDefault();
+        const dataSetIndex = e.target.value;
+        if (dataSetIndex == 0) return;
+        const newDataSet = DATASETS[dataSetIndex - 1];
+        setCSVData(newDataSet);
+        setFileName(newDataSet.fileName);
     }
 
     return (
         <section className="mx-10 mt-10">
             <h2 className="text-3xl"> Try Demo </h2>
             <hr className="my-3" />
-            <UploadCSV changeHandler={changeHandler} dataSets={dataSets} />
+            <UploadCSV
+                changeHandler={changeHandler}
+                dataSets={dataSets}
+                onSelectSavedDataSet={handleOnSelectSavedDataSet}
+            />
             <SendCSV
                 fileName={fileName}
                 values={values}
-                handleOnChangeTarget={handleOnChangeTarget}
+                onChangeTarget={handleOnChangeTarget}
+                onChangeCriterion={handleOnChangeCriterion}
                 onEnviar={onEnviar}
+                isLoading={loading}
             />
             {Object.keys(metrics).length > 0 && (
                 <>

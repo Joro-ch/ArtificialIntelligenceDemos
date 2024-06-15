@@ -2,11 +2,7 @@ import SKTryDemo from "../../components/SKComponents/SKTryDemo";
 import TopicHeader from "@/app/components/Topic/TopicHeader";
 
 const DESC = `
-    Lorem ipsum dolor sit amet consectetur, 
-    adipisicing elit. Incidunt libero at nemo! 
-    Dolores vel tenetur similique error, eum, libero 
-    id sit accusamus maiores nulla quos consectetur fugit veniam, 
-    delectus laudantium.
+    A package inspired by the widely used Scikit Learn.
 `
 
 const SciKitty = ({ }) => {

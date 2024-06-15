@@ -1,5 +1,5 @@
 
-const UploadCSV = ({ changeHandler, dataSets }) => {
+const UploadCSV = ({ changeHandler, dataSets, onSelectSavedDataSet }) => {
     return (
         <section className="flex flex-col">
             <p className="mb-3">
@@ -13,10 +13,10 @@ const UploadCSV = ({ changeHandler, dataSets }) => {
                     accept=".csv"
                     onChange={changeHandler}
                 />
-                <select className="rounded bg-gray-700 p-5">
-                    <option> Choose a saved dataset </option>
+                <select className="rounded bg-gray-700 p-5" onChange={onSelectSavedDataSet} name="dataSet">
+                    <option value={0}> Choose a saved dataset </option>
                     {dataSets.map((dataset, index) => (
-                        <option key={index}> {dataset.fileName} </option>
+                        <option key={index + 1} value={index + 1}> {dataset.fileName} </option>
                     ))}
                 </select>
             </div>
