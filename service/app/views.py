@@ -33,9 +33,9 @@ def transform_csv(request):
     csvData = data.get('csv')
     featureTarget = data.get('featureTarget')
     fileName = data.get('fileName')
+    print(featureTarget)
     create_csv(csvData, fileName)
     metrics = create_tree(fileName, featureTarget)
-    print(metrics)
     return Response(metrics)
 
 

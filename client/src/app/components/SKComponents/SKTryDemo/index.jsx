@@ -32,24 +32,28 @@ const SKTryDemo = ({ }) => {
             header: false,
             skipEmptyLines: true,
             complete: function (results) {
-                const copyData = [...results.data];
-                setCSVData(copyData);
-                newDataSet.data = copyData;
-                const header = results.data.shift();
-                setQuestionTarget(header[0]);
-                const output = results.data[0].map((_, colIndex) => results.data.map(row => row[colIndex]));
-                let newDic = {};
-                output.map((row, index) => {
-                    const a = ([... new Set(row)]);
-                    newDic = {
-                        ...newDic,
-                        [header[index]]: a,
-                    }
-                });
-                setValues(newDic);
+                setCSVData(results.data);
+                newDataSet.data = results.data;
+                initParams(newDataSet);
             },
         });
         setDataSets([...dataSets, newDataSet]);
+    };
+
+    const initParams = (newDataSet) => {
+        const header = newDataSet.data[0];
+        const dataWithOutHeader = newDataSet.data.slice(1);
+        setQuestionTarget(header[0]);
+        const output = dataWithOutHeader[0].map((_, colIndex) => dataWithOutHeader.map(row => row[colIndex]));
+        let newDic = {};
+        output.map((row, index) => {
+            const a = ([... new Set(row)]);
+            newDic = {
+                ...newDic,
+                [header[index]]: a,
+            }
+        });
+        setValues(newDic);
     };
 
     const handleOnChangeTarget = (e) => {
@@ -65,9 +69,19 @@ const SKTryDemo = ({ }) => {
         setCriterion(lowerCase);
     };
 
+    const handleOnSelectSavedDataSet = (e) => {
+        e.preventDefault();
+        const dataSetIndex = e.target.value;
+        if (dataSetIndex == 0) return;
+        const newDataSet = dataSets[dataSetIndex - 1];
+        setFileName(newDataSet.fileName); 
+        setCSVData(newDataSet.data);
+        initParams(newDataSet);
+    };
+
     const onEnviar = async () => {
-        if (fileName == "") return;
         try {
+            if (fileName == "") return;
             setLoading(true);
             const response = await fetch('http://127.0.0.1:8000/api/transformCSV/', {
                 method: 'POST',
@@ -77,10 +91,12 @@ const SKTryDemo = ({ }) => {
                 body: JSON.stringify({ csv: csvData, featureTarget: questionTarget, fileName: fileName }),
             });
 
-            if (response.ok) {
+            if (!response.ok) {
+                throw new Error(`Server Error: ${response.status} ${response.statusText}`);
+            }
+            else {
                 const result = await response.json();
-                console.log(result)
-                setMetrics(result)
+                setMetrics(result);
             }
         }
         catch (e) {
@@ -94,16 +110,7 @@ const SKTryDemo = ({ }) => {
         finally {
             setLoading(false);
         }
-    }
-
-    const handleOnSelectSavedDataSet = (e) => {
-        e.preventDefault();
-        const dataSetIndex = e.target.value;
-        if (dataSetIndex == 0) return;
-        const newDataSet = DATASETS[dataSetIndex - 1];
-        setCSVData(newDataSet);
-        setFileName(newDataSet.fileName);
-    }
+    };
 
     return (
         <section className="mx-10 mt-10">

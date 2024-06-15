@@ -17,7 +17,7 @@ const SendCSV = ({ fileName, values, onChangeTarget, onChangeCriterion, onEnviar
                     <div className="flex justify-center gap-5">
                         <span className="flex gap-3 justify-center my-5">
                             Target:
-                            <select className="text-black rounded p-1" onChange={onChangeTarget}>
+                            <select className="text-black rounded p-1" onChange={onChangeTarget} name="target">
                                 {Object.keys(values).map((value, index) =>
                                     <option key={index}> {value} </option>
                                 )}
@@ -25,7 +25,7 @@ const SendCSV = ({ fileName, values, onChangeTarget, onChangeCriterion, onEnviar
                         </span>
                         <span className="flex gap-3 justify-center my-5">
                             Criterion:
-                            <select className="text-black rounded p-1" onChange={onChangeCriterion}>
+                            <select className="text-black rounded p-1" onChange={onChangeCriterion} name="criterion">
                                 {CRITERIA.map((value, index) => 
                                     <option key={index}> {value} </option>
                                 )}

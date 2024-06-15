@@ -26,9 +26,9 @@ const Metrics = ({ metrics }) => {
                     <>
                         {" ["}
                         {metrics.features.map((item, index) =>
-                            <>
+                            <span key={index}>
                                 {index != metrics.features.length - 1 ? `${item}, ` : item}
-                            </>
+                            </span>
                         )}
                         {"]"}
                     </>
@@ -38,9 +38,9 @@ const Metrics = ({ metrics }) => {
                     <>
                         {" ["}
                         {metrics.real_features.map((item, index) =>
-                            <>
+                            <span key={index}>
                                 {index != metrics.features.length - 1 ? `${item}, ` : item}
-                            </>
+                            </span>
                         )}
                         {"]"}
                     </>
