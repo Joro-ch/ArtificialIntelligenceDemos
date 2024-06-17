@@ -28,6 +28,7 @@ def transform_csv(request):
     feature_target = data.get('featureTarget')
     file_name = data.get('fileName')
     criterion = data.get('criterion')
+    print(data)
     create_csv(csv_data, file_name)
     metrics = create_tree(file_name, feature_target, criterion)
     return Response(metrics)

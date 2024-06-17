@@ -1,0 +1,181 @@
+{
+    "es_hoja": false,
+    "regla": [
+        0,
+        "==",
+        "e11"
+    ],
+    "etiqueta": "known",
+    "impureza": 0.9402859586706311,
+    "etiquetas": [
+        "known",
+        "known",
+        "known",
+        "known",
+        "known",
+        "unknown",
+        "known",
+        "unknown",
+        "known",
+        "known",
+        "unknown",
+        "unknown",
+        "known",
+        "unknown"
+    ],
+    "muestras": 14,
+    "izquierda": {
+        "es_hoja": true,
+        "regla": null,
+        "etiqueta": "unknown",
+        "impureza": -0.0,
+        "etiquetas": [
+            "unknown"
+        ],
+        "muestras": 1
+    },
+    "derecha": {
+        "es_hoja": false,
+        "regla": [
+            4,
+            "==",
+            "home"
+        ],
+        "etiqueta": "known",
+        "impureza": 0.8904916402194913,
+        "etiquetas": [
+            "known",
+            "known",
+            "known",
+            "known",
+            "known",
+            "unknown",
+            "known",
+            "unknown",
+            "known",
+            "known",
+            "unknown",
+            "known",
+            "unknown"
+        ],
+        "muestras": 13,
+        "izquierda": {
+            "es_hoja": true,
+            "regla": null,
+            "etiqueta": "known",
+            "impureza": -0.0,
+            "etiquetas": [
+                "known",
+                "known",
+                "known",
+                "known",
+                "known"
+            ],
+            "muestras": 5
+        },
+        "derecha": {
+            "es_hoja": false,
+            "regla": [
+                0,
+                "==",
+                "e10"
+            ],
+            "etiqueta": "known",
+            "impureza": 1.0,
+            "etiquetas": [
+                "known",
+                "known",
+                "known",
+                "unknown",
+                "known",
+                "unknown",
+                "unknown",
+                "unknown"
+            ],
+            "muestras": 8,
+            "izquierda": {
+                "es_hoja": true,
+                "regla": null,
+                "etiqueta": "known",
+                "impureza": -0.0,
+                "etiquetas": [
+                    "known"
+                ],
+                "muestras": 1
+            },
+            "derecha": {
+                "es_hoja": false,
+                "regla": [
+                    0,
+                    "==",
+                    "e12"
+                ],
+                "etiqueta": "unknown",
+                "impureza": 0.9852281360342515,
+                "etiquetas": [
+                    "known",
+                    "known",
+                    "known",
+                    "unknown",
+                    "unknown",
+                    "unknown",
+                    "unknown"
+                ],
+                "muestras": 7,
+                "izquierda": {
+                    "es_hoja": true,
+                    "regla": null,
+                    "etiqueta": "known",
+                    "impureza": -0.0,
+                    "etiquetas": [
+                        "known"
+                    ],
+                    "muestras": 1
+                },
+                "derecha": {
+                    "es_hoja": false,
+                    "regla": [
+                        0,
+                        "==",
+                        "e14"
+                    ],
+                    "etiqueta": "unknown",
+                    "impureza": 0.9182958340544896,
+                    "etiquetas": [
+                        "known",
+                        "known",
+                        "unknown",
+                        "unknown",
+                        "unknown",
+                        "unknown"
+                    ],
+                    "muestras": 6,
+                    "izquierda": {
+                        "es_hoja": true,
+                        "regla": null,
+                        "etiqueta": "known",
+                        "impureza": -0.0,
+                        "etiquetas": [
+                            "known"
+                        ],
+                        "muestras": 1
+                    },
+                    "derecha": {
+                        "es_hoja": true,
+                        "regla": null,
+                        "etiqueta": "unknown",
+                        "impureza": 0.7219280948873623,
+                        "etiquetas": [
+                            "known",
+                            "unknown",
+                            "unknown",
+                            "unknown",
+                            "unknown"
+                        ],
+                        "muestras": 5
+                    }
+                }
+            }
+        }
+    }
+}

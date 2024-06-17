@@ -121,9 +121,8 @@ const SKTryDemo = ({ }) => {
         }
         else {
             const result = await response.json();
-            mostrarMatrizConfusion(result.features, result.conf_matrix);
             return result;
-        }
+        };
     };
 
     const getSklearnDT = async () => {
@@ -146,23 +145,7 @@ const SKTryDemo = ({ }) => {
         else {
             const result = await response.json();
             return result;
-        }
-    };
-
-    const mostrarMatrizConfusion = (features, confMatrix) => {
-        // Crear la matriz con los títulos de las filas y columnas
-        const matrixWithTitles = [['Feature/Real', ...features], ...features.map((feature, index) => {
-            const row = [feature];
-            if (Array.isArray(confMatrix[index])) {
-                row.push(...confMatrix[index]);
-            } else {
-                row.push(confMatrix[index]); // Si no es un array, simplemente añadir el valor
-            }
-            return row;
-        })];
-
-        // Imprimir la matriz
-        console.log(matrixWithTitles);
+        };
     };
 
     return (
