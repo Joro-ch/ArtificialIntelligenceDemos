@@ -57,20 +57,18 @@ const TopicForm = ({ values, questionTarget, fileName }) => {
                 3. Try changing feature parameters to form a question for the Decision Tree.
             </p>
             <div className="flex flex-col gap-5 max-h-[45vh] overflow-auto">
-                {Object.keys(values).map((key, index) => (
-                    <span key={index}>
-                        {key != questionTarget && (
-                            <span className="flex gap-5" >
-                                <span className="w-1/3"> {key} </span>
-                                <select className="w-full text-black" name={key.toLowerCase()}>
-                                    {values[key].sort().map((option, index) =>
-                                        <option key={index} value={option}> {option} </option>
-                                    )}
-                                </select>
-                            </span>
-                        )}
-                    </span>
-                ))}
+                {Object.keys(values).map((key, index) =>
+                    key !== questionTarget && (
+                        <span key={index} className="flex gap-5" >
+                            <span className="w-1/3"> {key} </span>
+                            <select className="w-full text-black" name={key.toLowerCase()}>
+                                {values[key].sort().map((option, index) =>
+                                    <option key={index} value={option}> {option} </option>
+                                )}
+                            </select>
+                        </span>
+                    )
+                )}
             </div>
             {!loading ? (
                 <button className="bg-green-500 rounded p-1" type="submit">

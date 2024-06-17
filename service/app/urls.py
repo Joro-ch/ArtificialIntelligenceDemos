@@ -1,7 +1,7 @@
 from django.urls import path
-from .views import process_data, transform_csv
+from .views import transform_csv, sklearn_dt
 
 urlpatterns = [
-    path('process/', process_data, name='process_data'),
     path('transformCSV/', transform_csv, name='transform_csv'),
+    path('sklearnDT/', sklearn_dt, name='sklearn_dt')
 ]

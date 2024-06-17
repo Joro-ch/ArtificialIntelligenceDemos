@@ -18,7 +18,7 @@ const RetrAiGo = ({ }) => {
                     <hr className="my-3"/>
                     <p> {DESC} </p>
                 </section>
-                <section className="mx-10 mt-10"> 
+                {/* <section className="mx-10 mt-10"> 
                     <h2 className="text-3xl"> What{"'"}s RetrAiGo? </h2>
                     <hr className="my-3"/>
                     <p> {DESC} </p>
@@ -27,7 +27,7 @@ const RetrAiGo = ({ }) => {
                     <h2 className="text-3xl"> How it works? </h2>
                     <hr className="my-3"/>
                     <p> {DESC} </p>
-                </section>
+                </section> */}
             </article>
         </main>
     )

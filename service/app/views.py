@@ -11,31 +11,35 @@ from scikitty.metrics.recall_score import puntuacion_de_recall
 from scikitty.metrics.f1_score import puntuacion_de_f1
 from scikitty.metrics.confusion_matrix import matriz_de_confusion
 from scikitty.model_selection.train_test_split import train_test_split
+from sklearn.tree import DecisionTreeClassifier, plot_tree
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import OneHotEncoder
 import pandas as pd
 
 # Create your views here.
 
 @api_view(['POST'])
-def process_data(request):
-    # Recibe los datos del frontend
+def transform_csv(request):
     data = request.data
-    number = data.get('number', 0) * 2
-
-    print("asdasdasdasdas", number)
-
-    # Devuelve el resultado
-    return Response({"processed_data": number})
+    csv_data = data.get('csv')
+    feature_target = data.get('featureTarget')
+    file_name = data.get('fileName')
+    criterion = data.get('criterion')
+    create_csv(csv_data, file_name)
+    metrics = create_tree(file_name, feature_target, criterion)
+    return Response(metrics)
 
 
 @api_view(['POST'])
-def transform_csv(request):
+def sklearn_dt(request):
     data = request.data
-    csvData = data.get('csv')
-    featureTarget = data.get('featureTarget')
-    fileName = data.get('fileName')
-    print(featureTarget)
-    create_csv(csvData, fileName)
-    metrics = create_tree(fileName, featureTarget)
+    file_name = data.get('fileName')
+    csv_data = data.get('csv')
+    feature_target = data.get('featureTarget')
+    criterion = data.get('criterion')
+    create_csv(csv_data, file_name)
+    metrics = create_sklearn_dt(file_name, feature_target, criterion)
     return Response(metrics)
 
 
@@ -47,7 +51,7 @@ def create_csv(data, file):
     return csv_filename
 
 
-def create_tree(file_name, featureTarget):
+def create_tree(file_name, featureTarget, criterion):
     # Cargar los datos.
     data = pd.read_csv(f'{file_name}.csv')
 
@@ -61,17 +65,17 @@ def create_tree(file_name, featureTarget):
         features, labels, test_size=0.2, random_state=42)
 
     # Crear e instanciar el árbol de decisión.
-    criterio_impureza = 'entropy'
+    criterio_impureza = criterion
     min_muestras_div = 2
     max_profundidad = 5
     dt = DecisionTree(X_train, y_train, criterio=criterio_impureza,
-                    min_muestras_div=min_muestras_div, max_profundidad=max_profundidad)
+                      min_muestras_div=min_muestras_div, max_profundidad=max_profundidad)
     dt.fit()
 
     # ---------------------------------------------------------
 
     def test_tree(dt, file_name, X_test, y_test):
-        
+
         # Visualizar el árbol.
         # tree_structure = dt.get_tree_structure()
         # visualizer = TreeVisualizer()
@@ -129,3 +133,58 @@ def create_tree(file_name, featureTarget):
     test_tree(nuevo_dt, file_name, X_test, y_test)
 
     return treeMetrics
+
+
+def create_sklearn_dt(file_name, featureTarget, criterion):
+    data = pd.read_csv(f'{file_name}.csv')
+
+    # Preparar los datos.
+    # Asume que 'Play Tennis' es la columna objetivo
+    features = data.drop(featureTarget, axis=1)
+    labels = data[featureTarget]
+
+    # Codificar las variables categóricas.
+    encoder = OneHotEncoder()
+    features_encoded = encoder.fit_transform(features)
+
+    # Dividir los datos.
+    X_train, X_test, y_train, y_test = train_test_split(
+        features_encoded, labels, test_size=0.2, random_state=42)
+
+    # Crear e instanciar el árbol de decisión.
+    dt = DecisionTreeClassifier(
+        criterion=criterion, min_samples_split=2, max_depth=5, random_state=42)
+    dt.fit(X_train, y_train)
+
+    # Imprimir resultados.
+    y_pred = dt.predict(X_test)
+
+    # Se calculan las metricas.
+    accuracy = accuracy_score(y_test, y_pred)
+    precision = precision_score(y_test, y_pred, average='weighted')
+    recall = recall_score(y_test, y_pred, average='weighted')
+    f1 = f1_score(y_test, y_pred, average='weighted')
+    conf_matrix = confusion_matrix(y_test, y_pred)
+
+    # Se imprimen los resultados por consola.
+    print("\n------------------------------ ARBOL SCI-KIT ------------------------------\n")
+    print("Exactitud:", accuracy)
+    print("Precisión:", precision)
+    print("Recall:", recall)
+    print("F1-score:", f1)
+    print("Matriz de confusión:")
+    print(conf_matrix)
+    print("Etiquetas predichas:", y_pred)
+    print("Etiquetas reales:", y_test.tolist())
+    print("\nVisualizando el árbol de Sci-Kit Learn...\n")
+
+    metrics = {
+        "accuracy": accuracy,
+        "precision": precision,
+        "recall": recall,
+        "f1": f1,
+        "conf_matrix": conf_matrix,
+        "features": y_pred,
+        "real_features": y_test.tolist(),
+    }
+    return metrics

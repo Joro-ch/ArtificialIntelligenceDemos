@@ -16,6 +16,7 @@ const SKTryDemo = ({ }) => {
     const [fileName, setFileName] = useState("");
     const [dataSets, setDataSets] = useState(DATASETS);
     const [metrics, setMetrics] = useState([]);
+    const [skMetrics, setSkMetrics] = useState([]);
     const [loading, setLoading] = useState(false);
 
     const changeHandler = (e) => {
@@ -74,12 +75,17 @@ const SKTryDemo = ({ }) => {
         const dataSetIndex = e.target.value;
         if (dataSetIndex == 0) return;
         const newDataSet = dataSets[dataSetIndex - 1];
-        setFileName(newDataSet.fileName); 
+        setFileName(newDataSet.fileName);
         setCSVData(newDataSet.data);
         initParams(newDataSet);
     };
 
     const onEnviar = async () => {
+        await getScikittyDT();
+        await getSklearnDT();
+    };
+
+    const getScikittyDT = async () => {
         try {
             if (fileName == "") return;
             setLoading(true);
@@ -88,7 +94,12 @@ const SKTryDemo = ({ }) => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ csv: csvData, featureTarget: questionTarget, fileName: fileName }),
+                body: JSON.stringify({
+                    csv: csvData,
+                    featureTarget: questionTarget,
+                    fileName: fileName,
+                    criterion: criterion,
+                }),
             });
 
             if (!response.ok) {
@@ -96,7 +107,63 @@ const SKTryDemo = ({ }) => {
             }
             else {
                 const result = await response.json();
+                console.log(result)
+                mostrarMatrizConfusion(result.features, result.conf_matrix)
                 setMetrics(result);
+            }
+        }
+        catch (e) {
+            if (e instanceof TypeError) {
+                toast.error('Error!', { description: "Server not online!" })
+            }
+            else {
+                toast.error('Error!', { description: e.message })
+            }
+        }
+        finally {
+            setLoading(false);
+        }
+    };
+
+    const mostrarMatrizConfusion = (features, confMatrix) => {
+        // Crear la matriz con los títulos de las filas y columnas
+        const matrixWithTitles = [['Feature/Real', ...features], ...features.map((feature, index) => {
+            const row = [feature];
+            if (Array.isArray(confMatrix[index])) {
+                row.push(...confMatrix[index]);
+            } else {
+                row.push(confMatrix[index]); // Si no es un array, simplemente añadir el valor
+            }
+            return row;
+        })];
+    
+        // Imprimir la matriz
+        console.log(matrixWithTitles);
+    };
+
+    const getSklearnDT = async () => {
+        try {
+            if (fileName == "") return;
+            setLoading(true);
+            const response = await fetch('http://127.0.0.1:8000/api/sklearnDT/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    csv: csvData,
+                    featureTarget: questionTarget,
+                    fileName: fileName,
+                    criterion: criterion,
+                }),
+            });
+
+            if (!response.ok) {
+                throw new Error(`Server Error: ${response.status} ${response.statusText}`);
+            }
+            else {
+                const result = await response.json();
+                setSkMetrics(result);
             }
         }
         catch (e) {
@@ -129,9 +196,10 @@ const SKTryDemo = ({ }) => {
                 onEnviar={onEnviar}
                 isLoading={loading}
             />
-            {Object.keys(metrics).length > 0 && (
+            {Object.keys(metrics).length > 0 && Object.keys(skMetrics).length > 0 && (
                 <>
-                    <Metrics metrics={metrics} />
+                    <Metrics metrics={metrics} title={"Scikitty"} />
+                    <Metrics metrics={skMetrics} title={"Sklearn"} />
                     <DoQuestion
                         values={values}
                         questionTarget={questionTarget}
