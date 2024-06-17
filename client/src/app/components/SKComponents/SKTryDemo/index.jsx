@@ -81,47 +81,71 @@ const SKTryDemo = ({ }) => {
     };
 
     const onEnviar = async () => {
-        await getScikittyDT();
-        await getSklearnDT();
-    };
-
-    const getScikittyDT = async () => {
         try {
             if (fileName == "") return;
             setLoading(true);
-            const response = await fetch('http://127.0.0.1:8000/api/transformCSV/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    csv: csvData,
-                    featureTarget: questionTarget,
-                    fileName: fileName,
-                    criterion: criterion,
-                }),
-            });
-
-            if (!response.ok) {
-                throw new Error(`Server Error: ${response.status} ${response.statusText}`);
-            }
-            else {
-                const result = await response.json();
-                console.log(result)
-                mostrarMatrizConfusion(result.features, result.conf_matrix)
-                setMetrics(result);
-            }
+            const scikittyDT = await getScikittyDT();
+            const sklearnDT = await getSklearnDT();
+            setMetrics(scikittyDT);
+            setSkMetrics(sklearnDT);
         }
         catch (e) {
             if (e instanceof TypeError) {
-                toast.error('Error!', { description: "Server not online!" })
+                toast.error('Error!', { description: "Server not online!" });
             }
             else {
-                toast.error('Error!', { description: e.message })
+                toast.error('Error!', { description: e.message });
             }
         }
         finally {
             setLoading(false);
+        };
+    };
+
+    const getScikittyDT = async () => {
+        const response = await fetch('http://127.0.0.1:8000/api/transformCSV/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                csv: csvData,
+                featureTarget: questionTarget,
+                fileName: fileName,
+                criterion: criterion,
+            }),
+        });
+
+        if (!response.ok) {
+            throw new Error(`Server Error: ${response.status} ${response.statusText}`);
+        }
+        else {
+            const result = await response.json();
+            mostrarMatrizConfusion(result.features, result.conf_matrix);
+            return result;
+        }
+    };
+
+    const getSklearnDT = async () => {
+        const response = await fetch('http://127.0.0.1:8000/api/sklearnDT/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                csv: csvData,
+                featureTarget: questionTarget,
+                fileName: fileName,
+                criterion: criterion,
+            }),
+        });
+
+        if (!response.ok) {
+            throw new Error(`Server Error: ${response.status} ${response.statusText}`);
+        }
+        else {
+            const result = await response.json();
+            return result;
         }
     };
 
@@ -136,47 +160,9 @@ const SKTryDemo = ({ }) => {
             }
             return row;
         })];
-    
+
         // Imprimir la matriz
         console.log(matrixWithTitles);
-    };
-
-    const getSklearnDT = async () => {
-        try {
-            if (fileName == "") return;
-            setLoading(true);
-            const response = await fetch('http://127.0.0.1:8000/api/sklearnDT/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    csv: csvData,
-                    featureTarget: questionTarget,
-                    fileName: fileName,
-                    criterion: criterion,
-                }),
-            });
-
-            if (!response.ok) {
-                throw new Error(`Server Error: ${response.status} ${response.statusText}`);
-            }
-            else {
-                const result = await response.json();
-                setSkMetrics(result);
-            }
-        }
-        catch (e) {
-            if (e instanceof TypeError) {
-                toast.error('Error!', { description: "Server not online!" })
-            }
-            else {
-                toast.error('Error!', { description: e.message })
-            }
-        }
-        finally {
-            setLoading(false);
-        }
     };
 
     return (

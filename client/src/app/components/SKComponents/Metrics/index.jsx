@@ -3,7 +3,7 @@ const Metrics = ({ metrics, title }) => {
     return (
         <section className="flex gap-3 mt-8 flex-wrap w-full justify-center">
             <div className="flex flex-col gap-3 w-1/4 bg-gray-800 rounded-xl p-3">
-                <h5 className="text-xl mb-3 text-center">
+                <h5 className="text-xl mb-3 text-center text-blue-400">
                     {title} Tree Metrics
                 </h5>
                 <span>
