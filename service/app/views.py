@@ -59,9 +59,10 @@ def create_tree(file_name, featureTarget, criterion):
     data = pd.read_csv(f'{file_name}.csv')
 
     # Preparar los datos.
-    # Asume que 'Play Tennis' es la columna objetivo
     features = data.drop(featureTarget, axis=1)
     labels = data[featureTarget]
+
+    print(labels)
 
     # Dividir los datos.
     X_train, X_test, y_train, y_test = train_test_split(

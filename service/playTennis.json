@@ -1,182 +1,207 @@
 {
     "es_hoja": false,
     "regla": [
-        0,
+        3,
         "==",
-        "Overcast"
+        "No"
     ],
-    "etiqueta": "Yes",
-    "impureza": 0.9456603046006401,
+    "etiqueta": "Weak",
+    "impureza": 0.9940302114769565,
     "etiquetas": [
-        "Yes",
-        "No",
-        "Yes",
-        "Yes",
-        "No",
-        "No",
-        "Yes",
-        "No",
-        "Yes",
-        "Yes",
-        "Yes"
+        "Weak",
+        "Strong",
+        "Weak",
+        "Weak",
+        "Strong",
+        "Strong",
+        "Weak",
+        "Weak",
+        "Strong",
+        "Weak",
+        "Strong"
     ],
     "muestras": 11,
     "izquierda": {
-        "es_hoja": true,
-        "regla": null,
-        "etiqueta": "Yes",
-        "impureza": -0.0,
-        "etiquetas": [
-            "Yes",
-            "Yes",
-            "Yes"
-        ],
-        "muestras": 3
-    },
-    "derecha": {
         "es_hoja": false,
         "regla": [
-            2,
+            0,
             "==",
-            "High"
+            "Rain"
         ],
-        "etiqueta": "No",
-        "impureza": 1.0,
+        "etiqueta": "Strong",
+        "impureza": 0.8112781244591328,
         "etiquetas": [
-            "No",
-            "Yes",
-            "No",
-            "No",
-            "Yes",
-            "No",
-            "Yes",
-            "Yes"
+            "Strong",
+            "Strong",
+            "Strong",
+            "Weak"
         ],
-        "muestras": 8,
+        "muestras": 4,
         "izquierda": {
-            "es_hoja": false,
-            "regla": [
-                0,
-                "==",
-                "Rain"
-            ],
-            "etiqueta": "No",
-            "impureza": 0.8112781244591328,
+            "es_hoja": true,
+            "regla": null,
+            "etiqueta": "Strong",
+            "impureza": -0.0,
             "etiquetas": [
-                "No",
-                "No",
-                "No",
-                "Yes"
+                "Strong",
+                "Strong"
             ],
-            "muestras": 4,
-            "izquierda": {
-                "es_hoja": false,
-                "regla": [
-                    3,
-                    "==",
-                    "Strong"
-                ],
-                "etiqueta": "No",
-                "impureza": 1.0,
-                "etiquetas": [
-                    "No",
-                    "Yes"
-                ],
-                "muestras": 2,
-                "izquierda": {
-                    "es_hoja": true,
-                    "regla": null,
-                    "etiqueta": "No",
-                    "impureza": -0.0,
-                    "etiquetas": [
-                        "No"
-                    ],
-                    "muestras": 1
-                },
-                "derecha": {
-                    "es_hoja": true,
-                    "regla": null,
-                    "etiqueta": "Yes",
-                    "impureza": -0.0,
-                    "etiquetas": [
-                        "Yes"
-                    ],
-                    "muestras": 1
-                }
-            },
-            "derecha": {
-                "es_hoja": true,
-                "regla": null,
-                "etiqueta": "No",
-                "impureza": -0.0,
-                "etiquetas": [
-                    "No",
-                    "No"
-                ],
-                "muestras": 2
-            }
+            "muestras": 2
         },
         "derecha": {
             "es_hoja": false,
             "regla": [
-                0,
+                1,
                 "==",
-                "Rain"
+                "Hot"
             ],
-            "etiqueta": "Yes",
-            "impureza": 0.8112781244591328,
+            "etiqueta": "Strong",
+            "impureza": 1.0,
             "etiquetas": [
-                "No",
-                "Yes",
-                "Yes",
-                "Yes"
+                "Strong",
+                "Weak"
             ],
-            "muestras": 4,
+            "muestras": 2,
             "izquierda": {
-                "es_hoja": false,
-                "regla": [
-                    3,
-                    "==",
+                "es_hoja": true,
+                "regla": null,
+                "etiqueta": "Strong",
+                "impureza": -0.0,
+                "etiquetas": [
                     "Strong"
                 ],
-                "etiqueta": "No",
-                "impureza": 1.0,
-                "etiquetas": [
-                    "No",
-                    "Yes"
-                ],
-                "muestras": 2,
-                "izquierda": {
-                    "es_hoja": true,
-                    "regla": null,
-                    "etiqueta": "No",
-                    "impureza": -0.0,
-                    "etiquetas": [
-                        "No"
-                    ],
-                    "muestras": 1
-                },
-                "derecha": {
-                    "es_hoja": true,
-                    "regla": null,
-                    "etiqueta": "Yes",
-                    "impureza": -0.0,
-                    "etiquetas": [
-                        "Yes"
-                    ],
-                    "muestras": 1
-                }
+                "muestras": 1
             },
             "derecha": {
                 "es_hoja": true,
                 "regla": null,
-                "etiqueta": "Yes",
+                "etiqueta": "Weak",
                 "impureza": -0.0,
                 "etiquetas": [
-                    "Yes",
-                    "Yes"
+                    "Weak"
+                ],
+                "muestras": 1
+            }
+        }
+    },
+    "derecha": {
+        "es_hoja": false,
+        "regla": [
+            0,
+            "==",
+            "Rain"
+        ],
+        "etiqueta": "Weak",
+        "impureza": 0.863120568566631,
+        "etiquetas": [
+            "Weak",
+            "Weak",
+            "Weak",
+            "Weak",
+            "Strong",
+            "Weak",
+            "Strong"
+        ],
+        "muestras": 7,
+        "izquierda": {
+            "es_hoja": true,
+            "regla": null,
+            "etiqueta": "Weak",
+            "impureza": -0.0,
+            "etiquetas": [
+                "Weak",
+                "Weak"
+            ],
+            "muestras": 2
+        },
+        "derecha": {
+            "es_hoja": false,
+            "regla": [
+                1,
+                "==",
+                "Hot"
+            ],
+            "etiqueta": "Weak",
+            "impureza": 0.9709505944546686,
+            "etiquetas": [
+                "Weak",
+                "Weak",
+                "Weak",
+                "Strong",
+                "Strong"
+            ],
+            "muestras": 5,
+            "izquierda": {
+                "es_hoja": true,
+                "regla": null,
+                "etiqueta": "Weak",
+                "impureza": -0.0,
+                "etiquetas": [
+                    "Weak",
+                    "Weak"
                 ],
                 "muestras": 2
+            },
+            "derecha": {
+                "es_hoja": false,
+                "regla": [
+                    0,
+                    "==",
+                    "Overcast"
+                ],
+                "etiqueta": "Strong",
+                "impureza": 0.9182958340544896,
+                "etiquetas": [
+                    "Weak",
+                    "Strong",
+                    "Strong"
+                ],
+                "muestras": 3,
+                "izquierda": {
+                    "es_hoja": true,
+                    "regla": null,
+                    "etiqueta": "Strong",
+                    "impureza": -0.0,
+                    "etiquetas": [
+                        "Strong"
+                    ],
+                    "muestras": 1
+                },
+                "derecha": {
+                    "es_hoja": false,
+                    "regla": [
+                        1,
+                        "==",
+                        "Cool"
+                    ],
+                    "etiqueta": "Strong",
+                    "impureza": 1.0,
+                    "etiquetas": [
+                        "Weak",
+                        "Strong"
+                    ],
+                    "muestras": 2,
+                    "izquierda": {
+                        "es_hoja": true,
+                        "regla": null,
+                        "etiqueta": "Weak",
+                        "impureza": -0.0,
+                        "etiquetas": [
+                            "Weak"
+                        ],
+                        "muestras": 1
+                    },
+                    "derecha": {
+                        "es_hoja": true,
+                        "regla": null,
+                        "etiqueta": "Strong",
+                        "impureza": -0.0,
+                        "etiquetas": [
+                            "Strong"
+                        ],
+                        "muestras": 1
+                    }
+                }
             }
         }
     }

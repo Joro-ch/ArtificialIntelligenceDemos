@@ -1,5 +1,5 @@
-
 :- [arbol].
+:- [guess].
 
 :- use_module(library(http/thread_httpd)).
 :- use_module(library(http/http_dispatch)).
@@ -11,7 +11,7 @@
 :- use_module(library(date)).
 
 % URL handlers.
-:- http_handler('/hello', handle_request, [method(post)]).
+:- http_handler('/retraigo', handle_request, [method(post), methods([options])]).
 :- http_handler('/consulta', handle_consulta, [method(post), methods([options])]).
 :- http_handler('/', home, []).
 
@@ -23,12 +23,21 @@ http:cors_enable([
     credentials(true)
 ]).
 
-% Manejador de la solicitud POST
 handle_request(Request) :-
-    option(method(post), Request),
+    cors_enable,
+    http_read_json_dict(Request, Dict),
+    _{board: JsonBoard} :< Dict,
+    json_to_prolog_board(JsonBoard, Board),
+    test_astar(Board, P, D, M, H),
+    reply_json_dict(_{board: JsonBoard, path: P, depth: D, goal: M, heuristic: H}).
 
-    % Responde para confirmar que la operación fue exitosa
-    reply_json_dict(_{message: "Hello World"}).
+json_to_prolog_board(JsonBoard, Board) :-
+    maplist(maplist(json_to_prolog_cell), JsonBoard, Board).
+
+json_to_prolog_cell("empty", empty).
+json_to_prolog_cell(Str, Num) :-
+    atom_number(Str, Num).
+
 
 % Manejador de la solicitud POST para /consulta
 handle_consulta(Request) :-
@@ -49,9 +58,8 @@ server(Port) :-
 home(_Request) :-
     reply_html_page(title('Code Timestamp Service'),
                     [ h1('To use it:'),
-                      p(['Send a post message to ', a(href('/add'), '/add'), ' to add a timestamp comment to your file.']),
-					  p(['Send a post message to ', a(href('/consulta'), '/consulta'), ' with parameters file_name and pregunta to get a response.'])
-					]).
+                      p(['Send a post message to ', a(href('/consulta'), '/consulta'), ' with parameters file_name and pregunta to get a response.'])
+                    ]).
 
 % Inicialización del servidor
 :- initialization
