@@ -43,7 +43,7 @@
     goal_row/2,
     goal_reached/1,
     start_astar/1,
-    test_astar/5,
+    test_astar/6,
 	astar/1,
 	goal_search/1,
 	goal_achieved/3,
@@ -57,13 +57,25 @@
 manhattan_distance([X1, Y1], [X2, Y2], Distance) :-
     Distance is abs(X1 - X2) + abs(Y1 - Y2).
 
+euclidean_distance([X1, Y1], [X2, Y2], Distance) :-
+    Distance is sqrt((X1 - X2) * (X1 - X2) + (Y1 - Y2) * (Y1 - Y2)).
+
 heuristic(BoardId, HeuristicValue) :-
     findall(Distance, (
         goal_position(Piece, GoalPos),
         current_position(BoardId, Piece, CurrPos),
         manhattan_distance(GoalPos, CurrPos, Distance)
-    ), Distances),
-    sumlist(Distances, HeuristicValue).
+    ), ManhattanDistances),
+    sumlist(ManhattanDistances, ManhattanHeuristicValue),
+    
+    findall(Distance, (
+        goal_position(Piece, GoalPos),
+        current_position(BoardId, Piece, CurrPos),
+        euclidean_distance(GoalPos, CurrPos, Distance)
+    ), EuclideanDistances),
+    sumlist(EuclideanDistances, EuclideanHeuristicValue),
+
+    HeuristicValue = [ManhattanHeuristicValue, EuclideanHeuristicValue].
 
 current_position(BoardId, Piece, [RowIndex, ColIndex]) :-
     board_row(BoardId, RowIndex, Row),

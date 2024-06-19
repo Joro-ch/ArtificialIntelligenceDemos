@@ -11,7 +11,7 @@ const AboutCard = ({ image, name, email }) => {
                 className="rounded-full"
             />
             <div className="text-center text-white">
-                <h5> {name} </h5>
+                <h5 className='text-blue-400'> {name} </h5>
                 <h5> {email} </h5>
             </div>
         </div>

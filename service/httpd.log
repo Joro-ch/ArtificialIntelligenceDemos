@@ -1054,3 +1054,179 @@ completed(29, 60.375000000000014, 586, 503, error("Stack limit (1.0Gb) exceeded\
 completed(30, 270.62500000000006, 45, 500, error("Time limit exceeded")).
 /*Tue Jun 18 19:06:53 2024*/ request(31, 1718759213.470, [peer(ip(127,0,0,1)),method(post),request_uri('/retraigo'),path('/retraigo'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(93)]).
 completed(31, 8.515625, 566, 200, ok).
+server(stopped, 1718759322).
+server(started, 1718759607).
+/*Tue Jun 18 19:13:27 2024*/ request(1, 1718759607.324, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(73)]).
+completed(1, 0.03125, 110, 500, error("open/3: source_sink `playTennis' does not exist (No such file or directory)")).
+/*Tue Jun 18 19:13:39 2024*/ request(2, 1718759619.088, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(69)]).
+completed(2, 0.0, 110, 500, error("open/3: source_sink `playTennis' does not exist (No such file or directory)")).
+/*Tue Jun 18 19:13:40 2024*/ request(3, 1718759620.689, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(68)]).
+completed(3, 0.0, 110, 500, error("open/3: source_sink `playTennis' does not exist (No such file or directory)")).
+/*Tue Jun 18 19:13:41 2024*/ request(4, 1718759621.840, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(70)]).
+completed(4, 0.0, 110, 500, error("open/3: source_sink `playTennis' does not exist (No such file or directory)")).
+/*Tue Jun 18 19:13:42 2024*/ request(5, 1718759622.961, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(68)]).
+completed(5, 0.0, 110, 500, error("open/3: source_sink `playTennis' does not exist (No such file or directory)")).
+/*Tue Jun 18 19:13:44 2024*/ request(6, 1718759624.319, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(66)]).
+completed(6, 0.0, 110, 500, error("open/3: source_sink `playTennis' does not exist (No such file or directory)")).
+/*Tue Jun 18 19:13:46 2024*/ request(7, 1718759626.319, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(67)]).
+completed(7, 0.0, 110, 500, error("open/3: source_sink `playTennis' does not exist (No such file or directory)")).
+/*Tue Jun 18 19:14:11 2024*/ request(8, 1718759651.136, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(69)]).
+completed(8, 0.0, 110, 500, error("open/3: source_sink `playTennis' does not exist (No such file or directory)")).
+/*Tue Jun 18 19:14:12 2024*/ request(9, 1718759652.560, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(71)]).
+completed(9, 0.0, 110, 500, error("open/3: source_sink `playTennis' does not exist (No such file or directory)")).
+/*Tue Jun 18 19:14:20 2024*/ request(10, 1718759660.958, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(66)]).
+completed(10, 0.0, 110, 500, error("open/3: source_sink `playTennis' does not exist (No such file or directory)")).
+/*Tue Jun 18 19:14:21 2024*/ request(11, 1718759661.645, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(66)]).
+completed(11, 0.0, 110, 500, error("open/3: source_sink `playTennis' does not exist (No such file or directory)")).
+/*Tue Jun 18 19:14:22 2024*/ request(12, 1718759662.840, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(68)]).
+completed(12, 0.0, 110, 500, error("open/3: source_sink `playTennis' does not exist (No such file or directory)")).
+/*Tue Jun 18 19:14:27 2024*/ request(13, 1718759667.222, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(66)]).
+completed(13, 0.0, 110, 500, error("open/3: source_sink `playTennis' does not exist (No such file or directory)")).
+/*Tue Jun 18 19:14:28 2024*/ request(14, 1718759668.447, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(68)]).
+completed(14, 0.0, 110, 500, error("open/3: source_sink `playTennis' does not exist (No such file or directory)")).
+/*Tue Jun 18 19:14:31 2024*/ request(15, 1718759671.420, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(69)]).
+completed(15, 0.0, 110, 500, error("open/3: source_sink `playTennis' does not exist (No such file or directory)")).
+/*Tue Jun 18 19:18:57 2024*/ request(16, 1718759937.057, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(69)]).
+completed(16, 0.0, 110, 500, error("open/3: source_sink `playTennis' does not exist (No such file or directory)")).
+/*Tue Jun 18 19:19:40 2024*/ request(17, 1718759980.769, [peer(ip(127,0,0,1)),method(post),request_uri('/retraigo'),path('/retraigo'),http_version(1-1),host('127.0.0.1'),port(8001),content_type('application/json'),user_agent('insomnia/9.2.0'),content_length(113)]).
+completed(17, 39.296875, 566, 200, ok).
+/*Tue Jun 18 19:21:58 2024*/ request(18, 1718760118.892, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(69)]).
+completed(18, 0.0, 110, 500, error("open/3: source_sink `playTennis' does not exist (No such file or directory)")).
+/*Tue Jun 18 19:24:36 2024*/ request(19, 1718760276.276, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),content_type('application/json'),user_agent('insomnia/9.2.0'),content_length(89)]).
+completed(19, 0.0, 19, 200, ok).
+/*Tue Jun 18 19:24:36 2024*/ request(20, 1718760276.961, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),content_type('application/json'),user_agent('insomnia/9.2.0'),content_length(89)]).
+completed(20, 0.0, 19, 200, ok).
+/*Tue Jun 18 19:24:38 2024*/ request(21, 1718760278.298, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),content_type('application/json'),user_agent('insomnia/9.2.0'),content_length(89)]).
+completed(21, 0.0, 19, 200, ok).
+/*Tue Jun 18 19:27:31 2024*/ request(22, 1718760451.607, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(69)]).
+completed(22, 0.0, 110, 500, error("open/3: source_sink `playTennis' does not exist (No such file or directory)")).
+/*Tue Jun 18 19:28:19 2024*/ request(23, 1718760499.128, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(74)]).
+completed(23, 0.0, 19, 200, ok).
+/*Tue Jun 18 19:28:24 2024*/ request(24, 1718760504.438, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(75)]).
+completed(24, 0.0, 19, 200, ok).
+/*Tue Jun 18 19:28:26 2024*/ request(25, 1718760506.492, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(74)]).
+completed(25, 0.0, 19, 200, ok).
+/*Tue Jun 18 19:28:28 2024*/ request(26, 1718760508.021, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(75)]).
+completed(26, 0.0, 19, 200, ok).
+/*Tue Jun 18 19:29:08 2024*/ request(27, 1718760548.586, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(78)]).
+completed(27, 0.0, 19, 200, ok).
+/*Tue Jun 18 19:29:13 2024*/ request(28, 1718760553.759, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(76)]).
+completed(28, 0.0, 19, 200, ok).
+/*Tue Jun 18 19:29:16 2024*/ request(29, 1718760556.333, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(76)]).
+completed(29, 0.0, 19, 200, ok).
+/*Tue Jun 18 19:29:17 2024*/ request(30, 1718760557.892, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(77)]).
+completed(30, 0.0, 19, 200, ok).
+/*Tue Jun 18 19:29:19 2024*/ request(31, 1718760559.304, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(75)]).
+completed(31, 0.0, 19, 200, ok).
+/*Tue Jun 18 19:29:20 2024*/ request(32, 1718760560.918, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(77)]).
+completed(32, 0.0, 19, 200, ok).
+/*Tue Jun 18 19:29:22 2024*/ request(33, 1718760562.693, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(79)]).
+completed(33, 0.0, 20, 200, ok).
+/*Tue Jun 18 19:44:24 2024*/ request(34, 1718761464.723, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(77)]).
+completed(34, 0.0, 22, 200, ok).
+/*Tue Jun 18 19:44:25 2024*/ request(35, 1718761465.548, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(77)]).
+completed(35, 0.0, 22, 200, ok).
+/*Tue Jun 18 19:45:56 2024*/ request(36, 1718761556.735, [peer(ip(127,0,0,1)),method(post),request_uri('/retraigo'),path('/retraigo'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(93)]).
+/*Tue Jun 18 19:46:18 2024*/ request(37, 1718761578.170, [peer(ip(127,0,0,1)),method(post),request_uri('/retraigo'),path('/retraigo'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(93)]).
+completed(36, 26.656250000000004, 561, 500, error("goal unexpectedly failed: user:handle_request([protocol(http),peer(ip(127,0,0,1)),pool(client('httpd@8001',user:http_dispatch,<stream>(00000242f437a190),<stream>(00000242f4377f90))),input(<stream>(00000242f437a190)),method(post),request_uri('/retraigo'),path('/retraigo'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),accept([media(_4320/_4322,[],1.0,[])]),accept_language(*),sec_fetch_mode(cors),user_agent(node),accept_encoding('gzip, deflate'),content_length(93)])")).
+completed(37, 69.421875, 519, 503, error("Stack limit (1.0Gb) exceeded\n  Stack sizes: local: 60.0Mb, global: 0.9Gb, trail: 6.6Mb\n  Stack depth: 1,355,060, last-call: 79%, Choice points: 280,820\n  In:\n    [1,355,060] guess:board_row(board_1816670, 4, [length:1|_654])\n    [1,355,059] heuristic_astar:current_position(board_1816670, 1, [length:2])\n    [1,355,058] system:'<meta-call>'(<compound (:)/2>)\n    [1,355,057] '$bags':findall_loop(_724, <compound (:)/2>, _728, [])\n    [1,355,056] '$bags':cleanup_bag(<compound (:)/2>, <compound (:)/2>)\n\nUse the --stack_limit=size[KMG] command line option or\n?- set_prolog_flag(stack_limit, 2_147_483_648). to double the limit.")).
+server(started, 1718763900).
+/*Tue Jun 18 20:24:59 2024*/ request(1, 1718763899.836, [peer(ip(127,0,0,1)),method(post),request_uri('/retraigo'),path('/retraigo'),http_version(1-1),host('127.0.0.1'),port(8001),content_type('application/json'),user_agent('insomnia/9.2.0'),content_length(113)]).
+completed(1, 61.10937500000001, 461, 200, ok).
+/*Tue Jun 18 20:27:26 2024*/ request(2, 1718764046.019, [peer(ip(127,0,0,1)),method(post),request_uri('/retraigo'),path('/retraigo'),http_version(1-1),host('127.0.0.1'),port(8001),content_type('application/json'),user_agent('insomnia/9.2.0'),content_length(113)]).
+completed(2, 90.6875, 461, 200, ok).
+/*Tue Jun 18 20:32:09 2024*/ request(3, 1718764329.744, [peer(ip(127,0,0,1)),method(post),request_uri('/retraigo'),path('/retraigo'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(93)]).
+completed(3, 29.937500000000004, 461, 200, ok).
+/*Tue Jun 18 20:38:47 2024*/ request(4, 1718764727.681, [peer(ip(127,0,0,1)),method(post),request_uri('/retraigo'),path('/retraigo'),http_version(1-1),host('127.0.0.1'),port(8001),content_type('application/json'),user_agent('insomnia/9.2.0'),content_length(113)]).
+completed(4, 60.23437500000003, 461, 200, ok).
+/*Tue Jun 18 20:42:42 2024*/ request(5, 1718764962.278, [peer(ip(127,0,0,1)),method(post),request_uri('/retraigo'),path('/retraigo'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(93)]).
+completed(5, 29.953125, 461, 200, ok).
+/*Tue Jun 18 20:43:54 2024*/ request(6, 1718765034.841, [peer(ip(127,0,0,1)),method(post),request_uri('/retraigo'),path('/retraigo'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(93)]).
+completed(6, 0.0, 461, 200, ok).
+/*Tue Jun 18 20:44:20 2024*/ request(7, 1718765060.388, [peer(ip(127,0,0,1)),method(post),request_uri('/retraigo'),path('/retraigo'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(93)]).
+completed(7, 0.0, 461, 200, ok).
+/*Tue Jun 18 20:44:55 2024*/ request(8, 1718765095.145, [peer(ip(127,0,0,1)),method(post),request_uri('/retraigo'),path('/retraigo'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(57)]).
+completed(8, 282.796875, 45, 500, error("Time limit exceeded")).
+server(started, 1718767258).
+/*Tue Jun 18 21:20:57 2024*/ request(1, 1718767257.961, [peer(ip(127,0,0,1)),method(post),request_uri('/retraigo'),path('/retraigo'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(93)]).
+completed(1, 0.03125, 237, 200, ok).
+/*Tue Jun 18 21:26:21 2024*/ request(2, 1718767581.331, [peer(ip(127,0,0,1)),method(post),request_uri('/retraigo'),path('/retraigo'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(93)]).
+completed(2, 0.0, 237, 200, ok).
+/*Tue Jun 18 21:27:28 2024*/ request(3, 1718767648.598, [peer(ip(127,0,0,1)),method(post),request_uri('/retraigo'),path('/retraigo'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(93)]).
+completed(3, 67.203125, 581, 503, error("Stack limit (1.0Gb) exceeded\n  Stack sizes: local: 45.0Mb, global: 0.9Gb, trail: 8.2Mb\n  Stack depth: 1,054,386, last-call: 80%, Choice points: 210,871\n  In:\n    [1,054,386] guess:process_board(board_843510, 24, [length:23], 24, <compound heap/2>)\n    [1,054,383] guess:process_board(board_843505, 23, [length:22], 23, <compound heap/2>)\n    [1,054,380] guess:process_board(board_843503, 22, [length:21], 22, <compound heap/2>)\n    [1,054,377] guess:process_board(board_843497, 21, [length:20], 21, <compound heap/2>)\n    [1,054,371] guess:process_board(board_320762, 20, [length:19], 20, <compound heap/2>)\n\nUse the --stack_limit=size[KMG] command line option or\n?- set_prolog_flag(stack_limit, 2_147_483_648). to double the limit.")).
+/*Tue Jun 18 21:29:37 2024*/ request(4, 1718767777.085, [peer(ip(127,0,0,1)),method(post),request_uri('/retraigo'),path('/retraigo'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(93)]).
+completed(4, 112.21875000000001, 566, 503, error("Stack limit (1.0Gb) exceeded\n  Stack sizes: local: 49.6Mb, global: 0.9Gb, trail: 7.5Mb\n  Stack depth: 1,167,307, last-call: 80%, Choice points: 232,007\n  In:\n    [1,167,307] lists:sum_list([length:11], 7.3005630797457695, _646)\n    [1,167,299] heuristic_astar:heuristic(board_1771504, [length:2])\n    [1,167,298] guess:expand_children([length:1], 22, [length:21], 23, <compound heap/2>, _706)\n    [1,167,294] guess:process_board(board_1075225, 22, [length:21], 22, <compound heap/2>)\n    [1,167,279] guess:process_board(board_893171, 18, [length:17], 18, <compound heap/2>)\n\nUse the --stack_limit=size[KMG] command line option or\n?- set_prolog_flag(stack_limit, 2_147_483_648). to double the limit.")).
+/*Tue Jun 18 21:33:48 2024*/ request(5, 1718768028.479, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(78)]).
+completed(5, 0.0, 19, 200, ok).
+/*Tue Jun 18 21:33:52 2024*/ request(6, 1718768032.288, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(74)]).
+completed(6, 0.0, 18, 200, ok).
+/*Tue Jun 18 21:33:55 2024*/ request(7, 1718768035.958, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(73)]).
+completed(7, 0.0, 18, 200, ok).
+/*Tue Jun 18 21:34:00 2024*/ request(8, 1718768040.860, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(75)]).
+completed(8, 0.0, 18, 200, ok).
+/*Tue Jun 18 21:34:03 2024*/ request(9, 1718768043.235, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(73)]).
+completed(9, 0.0, 19, 200, ok).
+/*Tue Jun 18 21:34:06 2024*/ request(10, 1718768046.502, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(74)]).
+completed(10, 0.0, 19, 200, ok).
+/*Tue Jun 18 21:34:09 2024*/ request(11, 1718768049.204, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(75)]).
+completed(11, 0.0, 19, 200, ok).
+/*Tue Jun 18 21:34:12 2024*/ request(12, 1718768052.225, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(73)]).
+completed(12, 0.0, 18, 200, ok).
+/*Tue Jun 18 21:34:14 2024*/ request(13, 1718768054.437, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(75)]).
+completed(13, 0.0, 18, 200, ok).
+/*Tue Jun 18 21:34:16 2024*/ request(14, 1718768056.384, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(74)]).
+completed(14, 0.0, 18, 200, ok).
+/*Tue Jun 18 21:36:54 2024*/ request(15, 1718768214.651, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(96)]).
+completed(15, 0.0, 21, 200, ok).
+/*Tue Jun 18 21:38:36 2024*/ request(16, 1718768316.046, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(96)]).
+completed(16, 0.0, 21, 200, ok).
+/*Tue Jun 18 21:38:42 2024*/ request(17, 1718768322.432, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(92)]).
+completed(17, 0.0, 21, 200, ok).
+/*Tue Jun 18 21:38:50 2024*/ request(18, 1718768330.104, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(78)]).
+completed(18, 0.0, 19, 200, ok).
+/*Tue Jun 18 21:39:06 2024*/ request(19, 1718768346.522, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(96)]).
+completed(19, 0.0, 21, 200, ok).
+/*Tue Jun 18 21:39:14 2024*/ request(20, 1718768354.703, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(97)]).
+completed(20, 0.0, 21, 200, ok).
+/*Tue Jun 18 21:39:19 2024*/ request(21, 1718768359.837, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(99)]).
+completed(21, 0.0, 21, 200, ok).
+/*Tue Jun 18 21:39:25 2024*/ request(22, 1718768365.321, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(93)]).
+completed(22, 0.0, 21, 200, ok).
+/*Tue Jun 18 21:39:27 2024*/ request(23, 1718768367.104, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(94)]).
+completed(23, 0.0, 21, 200, ok).
+/*Tue Jun 18 21:39:29 2024*/ request(24, 1718768369.537, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(94)]).
+completed(24, 0.0, 21, 200, ok).
+/*Tue Jun 18 21:39:30 2024*/ request(25, 1718768370.025, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(94)]).
+completed(25, 0.0, 21, 200, ok).
+/*Tue Jun 18 21:39:32 2024*/ request(26, 1718768372.968, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(93)]).
+completed(26, 0.0, 21, 200, ok).
+/*Tue Jun 18 21:39:39 2024*/ request(27, 1718768379.131, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(99)]).
+completed(27, 0.0, 21, 200, ok).
+/*Tue Jun 18 21:39:39 2024*/ request(28, 1718768379.657, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(99)]).
+completed(28, 0.0, 21, 200, ok).
+/*Tue Jun 18 21:39:41 2024*/ request(29, 1718768381.643, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(97)]).
+completed(29, 0.0, 21, 200, ok).
+/*Tue Jun 18 21:39:42 2024*/ request(30, 1718768382.151, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(97)]).
+completed(30, 0.0, 21, 200, ok).
+/*Tue Jun 18 21:39:43 2024*/ request(31, 1718768383.911, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(98)]).
+completed(31, 0.0, 21, 200, ok).
+/*Tue Jun 18 21:39:45 2024*/ request(32, 1718768385.404, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(98)]).
+completed(32, 0.0, 21, 200, ok).
+/*Tue Jun 18 21:39:48 2024*/ request(33, 1718768388.699, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(98)]).
+completed(33, 0.0, 21, 200, ok).
+/*Tue Jun 18 21:39:51 2024*/ request(34, 1718768391.848, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(98)]).
+completed(34, 0.0, 21, 200, ok).
+/*Tue Jun 18 21:39:55 2024*/ request(35, 1718768395.090, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(97)]).
+completed(35, 0.0, 21, 200, ok).
+/*Tue Jun 18 21:41:32 2024*/ request(36, 1718768492.440, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(78)]).
+completed(36, 0.0, 19, 200, ok).
+/*Tue Jun 18 21:41:58 2024*/ request(37, 1718768518.934, [peer(ip(127,0,0,1)),method(post),request_uri('/retraigo'),path('/retraigo'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(57)]).
+/*Tue Jun 18 21:42:27 2024*/ request(38, 1718768547.452, [peer(ip(127,0,0,1)),method(post),request_uri('/retraigo'),path('/retraigo'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(93)]).
+completed(38, 61.96875, 520, 503, error("Stack limit (1.0Gb) exceeded\n  Stack sizes: local: 45.1Mb, global: 0.9Gb, trail: 8.3Mb\n  Stack depth: 1,063,801, last-call: 80%, Choice points: 210,892\n  In:\n    [1,063,801] '$syspreds':flag('$gs_board_', _646, <compound (+)/2>)\n    [1,063,800] gensym:gensym(board_, _674)\n    [1,063,797] guess:clone_board(board_2887533, _694)\n    [1,063,796] guess:generate_child_board(board_2887533, _714, left)\n    [1,063,795] '$bags':findall_loop([length:2], <compound (:)/2>, _738, [])\n\nUse the --stack_limit=size[KMG] command line option or\n?- set_prolog_flag(stack_limit, 2_147_483_648). to double the limit.")).
+completed(37, 240.40625000000003, 45, 500, error("Time limit exceeded")).
+/*Tue Jun 18 21:53:33 2024*/ request(39, 1718769213.275, [peer(ip(127,0,0,1)),method(post),request_uri('/retraigo'),path('/retraigo'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(93)]).
+completed(39, 29.671874999999986, 237, 200, ok).
+/*Tue Jun 18 21:59:38 2024*/ request(40, 1718769578.800, [peer(ip(127,0,0,1)),method(post),request_uri('/consulta'),path('/consulta'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(78)]).
+completed(40, 0.0, 19, 200, ok).
+/*Tue Jun 18 22:01:24 2024*/ request(41, 1718769684.591, [peer(ip(127,0,0,1)),method(post),request_uri('/retraigo'),path('/retraigo'),http_version(1-1),host('127.0.0.1'),port(8001),connection('keep-alive'),content_type('application/json'),sec_fetch_mode(cors),user_agent(node),content_length(93)]).
+completed(41, 63.18750000000001, 541, 503, error("Stack limit (1.0Gb) exceeded\n  Stack sizes: local: 44.6Mb, global: 0.9Gb, trail: 8.3Mb\n  Stack depth: 1,079,684, last-call: 81%, Choice points: 208,866\n  In:\n    [1,079,684] system:'$collect_findall_bag'(_636, [])\n    [1,079,682] '$bags':cleanup_bag(<compound (:)/2>, <compound (:)/2>)\n    [1,079,679] heuristic_astar:heuristic(board_3723307, [length:2])\n    [1,079,678] guess:expand_children([length:1], 21, [length:20], 22, <compound heap/2>, _724)\n    [1,079,676] guess:process_board(board_3723302, 21, [length:20], 21, <compound heap/2>)\n\nUse the --stack_limit=size[KMG] command line option or\n?- set_prolog_flag(stack_limit, 2_147_483_648). to double the limit.")).

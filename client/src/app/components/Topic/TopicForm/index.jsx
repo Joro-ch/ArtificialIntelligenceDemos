@@ -1,12 +1,16 @@
 "use client";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
 const TopicForm = ({ values, questionTarget, fileName }) => {
     const [answer, setAnswer] = useState("");
     const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        setAnswer("");
+    }, [questionTarget]);
 
     const onSubmit = async (e) => {
         try {

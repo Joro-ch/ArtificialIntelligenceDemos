@@ -28,8 +28,8 @@ handle_request(Request) :-
     http_read_json_dict(Request, Dict),
     _{board: JsonBoard} :< Dict,
     json_to_prolog_board(JsonBoard, Board),
-    test_astar(Board, P, D, M, H),
-    reply_json_dict(_{board: JsonBoard, path: P, depth: D, goal: M, heuristic: H}).
+    test_astar(Board, Path, Depth, Goal, ManhattanValue, EuclideanValue),
+    reply_json_dict(_{path: Path, depth: Depth, goal: Goal, manhattanValue: ManhattanValue, euclideanValue: EuclideanValue}).
 
 json_to_prolog_board(JsonBoard, Board) :-
     maplist(maplist(json_to_prolog_cell), JsonBoard, Board).

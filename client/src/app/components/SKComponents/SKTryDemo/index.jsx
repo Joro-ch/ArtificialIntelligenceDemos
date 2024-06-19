@@ -167,8 +167,8 @@ const SKTryDemo = ({ }) => {
             />
             {Object.keys(metrics).length > 0 && Object.keys(skMetrics).length > 0 && (
                 <>
-                    <Metrics metrics={metrics} title={"Scikitty"} />
-                    <Metrics metrics={skMetrics} title={"Sklearn"} />
+                    <Metrics metrics={metrics} title={"Scikitty"} showIsBalanced={true} />
+                    <Metrics metrics={skMetrics} title={"Sklearn"} showIsBalanced={false} />
                     <DoQuestion
                         values={values}
                         questionTarget={questionTarget}

@@ -6,7 +6,7 @@ const Home = () => {
     <main>
       <article className="px-10 pt-10 text-white mb-5">
         <section className="mx-10 text-white">
-          <h1 className="text-7xl text-center text-title-color">
+          <h1 className="text-7xl text-center text-blue-400">
             Artificial Inteligence Demos
           </h1>
           <p className="mt-10">

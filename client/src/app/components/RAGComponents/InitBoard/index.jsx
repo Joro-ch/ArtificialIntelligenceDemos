@@ -81,7 +81,7 @@ const InitBoard = ({ setBoardData, boardSize, randomBoard }) => {
     return (
         <form
             onSubmit={onSubmitBoard}
-            className="flex flex-col justify-center bg-gray-700 p-5 rounde w-1/2 m-auto rounded border border-gray-600"
+            className="flex flex-col justify-center bg-gray-700 p-5 rounde w-1/2 h-full m-auto rounded border border-gray-600"
         >
             <h5 className="text-3xl text-center text-blue-400 mb-3">
                 Initial Board

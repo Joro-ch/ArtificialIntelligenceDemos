@@ -5,7 +5,7 @@ const AboutUs = ({ }) => {
     return (
         <main>
             <article className="px-10 pt-10 text-white mb-5">
-                <h1 className="text-7xl text-center text-title-color">
+                <h1 className="text-7xl text-center text-blue-400">
                     About Us
                 </h1>
                 <section className="m-10 flex flex-wrap">

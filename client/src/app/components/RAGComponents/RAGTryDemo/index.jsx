@@ -40,7 +40,7 @@ const RAGTryDemo = ({ }) => {
             </p>
             <div className="flex justify-center items-center gap-5 mt-3 ">
                 <span className="bg-gray-800 p-3 flex justify-center items-center w-1/3 rounded gap-5 border border-gray-600">
-                    <h5 className="text-blue-400"> Board Size </h5>
+                    <h5 className="text-blue-400"> 📐 Board Size </h5>
                     <input
                         className="text-black text-center rounded p-1"
                         type="number"
@@ -53,7 +53,7 @@ const RAGTryDemo = ({ }) => {
                     className="text-blue-400 bg-gray-800 p-4 w-1/3 rounded border border-gray-600 hover:bg-gray-900"
                     onClick={randomizeBoardNumbers}
                 >
-                    Randomize Board Numbers
+                    🎲 Randomize Board Numbers 🎲
                 </button>
             </div>
             <div className="flex gap-3 mt-3">

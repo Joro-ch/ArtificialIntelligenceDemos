@@ -3,14 +3,14 @@ import Image from 'next/image';
 
 const ToolCard = ({ name, image, url }) => {
     return (
-        <div className="text-black text-center min-w-[300px]">
+        <div className="text-black text-center min-w-[260px]">
             <Link href={url} replace>
                 <Image
                     width={3840}
                     height={2160}
                     src={image}
                     alt={name}
-                    className="h-[50vh] rounded-t w-full object-cover w-[350px] bg-[#323C4F]"
+                    className="h-full rounded-t object-cover w-[260px] bg-[#323C4F]"
                 />
             </Link>
             <Link href={url} replace>

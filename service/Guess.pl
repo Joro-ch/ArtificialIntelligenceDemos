@@ -27,7 +27,7 @@
     goal_row/2,
     goal_reached/1,
     start_astar/1,
-    test_astar/5,
+    test_astar/6,
     astar/1,
     goal_search/1,
     goal_achieved/3,
@@ -57,7 +57,7 @@
 :- dynamic visited_board/1.
 :- dynamic goal_found/0.
 :- dynamic goal_metrics/4.
-:- dynamic heuristic/1. 
+:- dynamic heuristics/3. 
 
 clear_visited_boards :-
     retractall(visited_board(_)).
@@ -198,9 +198,11 @@ goal_reached(BoardId) :-
     goal_row(1, GoalRow1),
     goal_row(2, GoalRow2),
     goal_row(3, GoalRow3),
+    goal_row(4, GoalRow4),
     board_row(BoardId, 1, GoalRow1),
     board_row(BoardId, 2, GoalRow2),
-    board_row(BoardId, 3, GoalRow3).
+    board_row(BoardId, 3, GoalRow3),
+    board_row(BoardId, 4, GoalRow4).
 
 start_astar(BoardId) :-
     clear_visited_boards,
@@ -214,8 +216,8 @@ astar(OpenHeap) :-
     goal_found; goal_search(OpenHeap).
 
 goal_search(OpenHeap) :-
-    get_from_heap(OpenHeap, _, [BoardId, GValue, HValue, Path, Depth], RestHeap),
-    display_search_state(HValue),
+    get_from_heap(OpenHeap, _, [BoardId, GValue, [ManhattanValue, EuclideanValue], Path, Depth], RestHeap),
+    display_search_state([ManhattanValue, EuclideanValue]),
     ( goal_reached(BoardId) -> goal_achieved(Path, BoardId, Depth)
     ; process_board(BoardId, GValue, Path, Depth, RestHeap)
     ).
@@ -254,23 +256,23 @@ process_board(_, _, _, _, RestHeap) :-
 
 expand_children([], _, _, _, OpenHeap, OpenHeap).
 expand_children([[ChildId, ChildDir]|RestChildren], GValue, Path, Depth, OpenHeap, NewHeap) :-
-    heuristic(ChildId, HValue),
+    heuristic(ChildId, [ManhattanValue, EuclideanValue]),
     NewGValue is GValue + 1,
-    FValue is NewGValue + HValue,
+    FValue is NewGValue + ManhattanValue, % Usamos la heurística Manhattan para la prioridad de la cola
     append(Path, [ChildDir], NewPath),
-    add_to_heap(OpenHeap, FValue, [ChildId, NewGValue, HValue, NewPath, Depth], UpdatedHeap),
+    add_to_heap(OpenHeap, FValue, [ChildId, NewGValue, [ManhattanValue, EuclideanValue], NewPath, Depth], UpdatedHeap),
     expand_children(RestChildren, GValue, Path, Depth, UpdatedHeap, NewHeap).
 
-display_search_state(HValue) :-
-    retractall(heuristic()),
-    assert(heuristic(HValue))
+display_search_state([ManhattanValue, EuclideanValue]) :-
+    retractall(heuristics(1)),
+    assert(heuristics(1, ManhattanValue, EuclideanValue))
 .
 
-test_astar(InitialBoard, P, D, M, H) :-
+test_astar(InitialBoard, Path, Depth, Goal, ManhattanValue, EuclideanValue) :-
     clear_visited_boards,
     clear_all_boards,
     create_board_from_list(InitialBoard, BoardId),
     start_astar(BoardId),
-    goal_metrics(1, P, D, M),
-    heuristic(H),
+    goal_metrics(1, Path, Depth, Goal),
+    heuristics(1, ManhattanValue, EuclideanValue),
     !.

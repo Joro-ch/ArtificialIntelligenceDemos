@@ -1,180 +1,116 @@
 {
     "es_hoja": false,
     "regla": [
-        0,
+        3,
         "==",
-        "e11"
+        "long"
     ],
-    "etiqueta": "known",
-    "impureza": 0.9402859586706311,
+    "etiqueta": "reads",
+    "impureza": 0.9852281360342515,
     "etiquetas": [
-        "known",
-        "known",
-        "known",
-        "known",
-        "known",
-        "unknown",
-        "known",
-        "unknown",
-        "known",
-        "known",
-        "unknown",
-        "unknown",
-        "known",
-        "unknown"
+        "skips",
+        "reads",
+        "reads",
+        "reads",
+        "skips",
+        "skips",
+        "skips",
+        "reads",
+        "reads",
+        "reads",
+        "reads",
+        "skips",
+        "reads",
+        "skips"
     ],
     "muestras": 14,
     "izquierda": {
         "es_hoja": true,
         "regla": null,
-        "etiqueta": "unknown",
+        "etiqueta": "skips",
         "impureza": -0.0,
         "etiquetas": [
-            "unknown"
+            "skips",
+            "skips",
+            "skips",
+            "skips"
         ],
-        "muestras": 1
+        "muestras": 4
     },
     "derecha": {
         "es_hoja": false,
         "regla": [
-            4,
+            1,
             "==",
-            "home"
+            "known"
         ],
-        "etiqueta": "known",
-        "impureza": 0.8904916402194913,
+        "etiqueta": "reads",
+        "impureza": 0.7219280948873623,
         "etiquetas": [
-            "known",
-            "known",
-            "known",
-            "known",
-            "known",
-            "unknown",
-            "known",
-            "unknown",
-            "known",
-            "known",
-            "unknown",
-            "known",
-            "unknown"
+            "reads",
+            "reads",
+            "reads",
+            "reads",
+            "reads",
+            "reads",
+            "reads",
+            "skips",
+            "reads",
+            "skips"
         ],
-        "muestras": 13,
+        "muestras": 10,
         "izquierda": {
             "es_hoja": true,
             "regla": null,
-            "etiqueta": "known",
+            "etiqueta": "reads",
             "impureza": -0.0,
             "etiquetas": [
-                "known",
-                "known",
-                "known",
-                "known",
-                "known"
+                "reads",
+                "reads",
+                "reads",
+                "reads",
+                "reads",
+                "reads"
             ],
-            "muestras": 5
+            "muestras": 6
         },
         "derecha": {
             "es_hoja": false,
             "regla": [
-                0,
+                2,
                 "==",
-                "e10"
+                "follow_up"
             ],
-            "etiqueta": "known",
+            "etiqueta": "reads",
             "impureza": 1.0,
             "etiquetas": [
-                "known",
-                "known",
-                "known",
-                "unknown",
-                "known",
-                "unknown",
-                "unknown",
-                "unknown"
+                "reads",
+                "reads",
+                "skips",
+                "skips"
             ],
-            "muestras": 8,
+            "muestras": 4,
             "izquierda": {
                 "es_hoja": true,
                 "regla": null,
-                "etiqueta": "known",
+                "etiqueta": "skips",
                 "impureza": -0.0,
                 "etiquetas": [
-                    "known"
+                    "skips",
+                    "skips"
                 ],
-                "muestras": 1
+                "muestras": 2
             },
             "derecha": {
-                "es_hoja": false,
-                "regla": [
-                    0,
-                    "==",
-                    "e12"
-                ],
-                "etiqueta": "unknown",
-                "impureza": 0.9852281360342515,
+                "es_hoja": true,
+                "regla": null,
+                "etiqueta": "reads",
+                "impureza": -0.0,
                 "etiquetas": [
-                    "known",
-                    "known",
-                    "known",
-                    "unknown",
-                    "unknown",
-                    "unknown",
-                    "unknown"
+                    "reads",
+                    "reads"
                 ],
-                "muestras": 7,
-                "izquierda": {
-                    "es_hoja": true,
-                    "regla": null,
-                    "etiqueta": "known",
-                    "impureza": -0.0,
-                    "etiquetas": [
-                        "known"
-                    ],
-                    "muestras": 1
-                },
-                "derecha": {
-                    "es_hoja": false,
-                    "regla": [
-                        0,
-                        "==",
-                        "e14"
-                    ],
-                    "etiqueta": "unknown",
-                    "impureza": 0.9182958340544896,
-                    "etiquetas": [
-                        "known",
-                        "known",
-                        "unknown",
-                        "unknown",
-                        "unknown",
-                        "unknown"
-                    ],
-                    "muestras": 6,
-                    "izquierda": {
-                        "es_hoja": true,
-                        "regla": null,
-                        "etiqueta": "known",
-                        "impureza": -0.0,
-                        "etiquetas": [
-                            "known"
-                        ],
-                        "muestras": 1
-                    },
-                    "derecha": {
-                        "es_hoja": true,
-                        "regla": null,
-                        "etiqueta": "unknown",
-                        "impureza": 0.7219280948873623,
-                        "etiquetas": [
-                            "known",
-                            "unknown",
-                            "unknown",
-                            "unknown",
-                            "unknown"
-                        ],
-                        "muestras": 5
-                    }
-                }
+                "muestras": 2
             }
         }
     }

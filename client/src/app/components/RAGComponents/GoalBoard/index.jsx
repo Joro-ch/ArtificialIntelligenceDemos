@@ -19,7 +19,10 @@ const GoalBoard = ({ boardData }) => {
                     Depth {boardData.depth}
                 </span>
                 <span>
-                    Heuristic {boardData.heuristic}
+                    Euclidean {Number(boardData.euclideanValue).toFixed(2)}
+                </span>
+                <span>
+                    Manhattan {Number(boardData.manhattanValue).toFixed(2)}
                 </span>
                 <span>
                     Path: [{boardData.path.map((step, index) =>

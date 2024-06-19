@@ -1,5 +1,5 @@
 
-const Metrics = ({ metrics, title }) => {
+const Metrics = ({ metrics, title, showIsBalanced }) => {
     return (
         <section className="flex gap-3 mt-8 flex-wrap w-full justify-center">
             <div className="flex flex-col gap-3 w-1/4 bg-gray-800 rounded-xl p-3">
@@ -18,9 +18,11 @@ const Metrics = ({ metrics, title }) => {
                 <span>
                     F1: {metrics.f1}
                 </span>
-                <span>
-                    Is Balanced: {metrics.is_balanced ? "Yes" : "No"}
-                </span>
+                {showIsBalanced && (
+                    <span>
+                        Is Balanced: {metrics.is_balanced ? "Yes" : "No"}
+                    </span>
+                )}
                 <span>
                     Train Features:
                     <>
