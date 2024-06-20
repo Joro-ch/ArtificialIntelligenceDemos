@@ -383,7 +383,7 @@ display_search_state([ManhattanValue, EuclideanValue]) :-
 check_solvable(Board) :-
     flatten(Board, FlatBoard),
     exclude(=(empty), FlatBoard, NumberedTiles),
-    count_inversions(NumberedTiles, InversionCount),
+    count_inversions(NumberedTiles, _),
     ( true
     ; abort
     ).
