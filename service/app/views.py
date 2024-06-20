@@ -40,7 +40,6 @@ def transform_csv(request):
     feature_target = data.get('featureTarget')
     file_name = data.get('fileName')
     criterion = data.get('criterion')
-    print(data)
     create_csv(csv_data, file_name)
     metrics = create_tree(file_name, feature_target, criterion)
     return Response(metrics)
@@ -68,6 +67,7 @@ def scikitty_linear_regression(request):
     mse, plot_base64 = _create_classification_model(file_name, feature_target)
     return Response({"mse": mse, "plot": plot_base64})
 
+
 @api_view(['POST'])
 def scikitty_logistic_regression(request):
     data = request.data
@@ -75,8 +75,79 @@ def scikitty_logistic_regression(request):
     csv_data = data.get('csv')
     feature_target = data.get('featureTarget')
     create_csv(csv_data, file_name)
-    accuracy, precision, recall, f1, plot_base64 = _create_logistic_classification_model(file_name, feature_target)
+    accuracy, precision, recall, f1, plot_base64 = _create_logistic_classification_model(
+        file_name, feature_target)
     return Response({"accuracy": accuracy, "precision": precision, "recall": recall, "f1": f1, "plot": plot_base64})
+
+
+@api_view(['POST'])
+def scikitty_tree_boosting(request):
+    data = request.data
+    file_name = data.get('fileName')
+    csv_data = data.get('csv')
+    feature_target = data.get('featureTarget')
+    criterion = data.get('criterion')
+    create_csv(csv_data, file_name)
+    metrics = _create_tree_boosting(file_name, feature_target, criterion)
+    return Response(metrics)
+
+
+def _create_tree_boosting(file_name, feature_target, criterion):
+
+    # Cargar los datos.
+    data = pd.read_csv(f'{file_name}.csv')
+
+    # Preparar los datos.
+    # Asume que 'Disease' es la columna objetivo
+    features = data.drop(feature_target, axis=1)
+    labels = data[feature_target]
+
+    # Dividir los datos.
+    X_train, X_test, y_train, y_test = train_test_split(
+        features, labels, test_size=0.2, random_state=42)
+
+    # Crear e instanciar el modelo de boosting.
+    tb = TreeBoosting(n_estimators=4, learning_rate=0.05,
+                      criterio=criterion, criterio_continuo='MSE')
+    tb.fit(X_train, y_train)
+
+    # Imprimir resultados.
+    y_pred = tb.predict(X_test)
+
+    # Se calculan las métricas.
+    accuracy = puntuacion_de_exactitud(y_test, y_pred)
+    precision = puntuacion_de_precision(y_test, y_pred, average='weighted')
+    recall = puntuacion_de_recall(y_test, y_pred, average='weighted')
+    f1 = puntuacion_de_f1(y_test, y_pred, average='weighted')
+    # Calcular la matriz de confusión
+    conf_mat, classes = _scikitty_confusion_matrix(y_test, y_pred)
+
+    # Crear la matriz con los títulos
+    conf_mat_with_titles = _create_confusion_matrix_with_titles(
+        conf_mat, classes)
+
+    # Se imprimen los resultados por consola.
+    print("\n------------------------------ BOOSTING SCIKITTY ------------------------------\n")
+    print("Exactitud:", accuracy)
+    print("Precisión:", precision)
+    print("Recall:", recall)
+    print("F1-score:", f1)
+    print("Matriz de confusión:")
+    print(conf_mat_with_titles)
+    print("Etiquetas predichas:", y_pred)
+    print("Etiquetas reales:", y_test.tolist())
+
+    metrics = {
+        "accuracy": accuracy,
+        "precision": precision,
+        "recall": recall,
+        "f1": f1,
+        "conf_matrix": conf_mat_with_titles,
+        "features": y_pred,
+        "real_features": y_test.tolist()
+    }
+    return metrics
+
 
 def _create_logistic_classification_model(file_name, target_column):
     # Cargar los datos desde el archivo CSV
@@ -99,7 +170,8 @@ def _create_logistic_classification_model(file_name, target_column):
     X = scaler.fit_transform(X)
 
     # Dividir el dataset en conjuntos de entrenamiento y prueba
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.2, random_state=42)
 
     # Instanciar y entrenar el modelo de clasificación
     model = LogisticRegression()
@@ -143,6 +215,7 @@ def _create_logistic_classification_model(file_name, target_column):
 
     return accuracy, precision, recall, f1, plot_base64
 
+
 def _create_classification_model(file_name, target_column):
     # Cargar los datos desde el archivo CSV
     df = pd.read_csv(f'{file_name}.csv')
@@ -164,7 +237,8 @@ def _create_classification_model(file_name, target_column):
     X = scaler.fit_transform(X)
 
     # Dividir el dataset en conjuntos de entrenamiento y prueba
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.2, random_state=42)
 
     # Instanciar y entrenar el modelo de clasificación
     model = LogisticRegression()
@@ -195,6 +269,7 @@ def _create_classification_model(file_name, target_column):
     plt.close()
 
     return accuracy, plot_base64
+
 
 def create_csv(data, file):
     csv_filename = file + ".csv"

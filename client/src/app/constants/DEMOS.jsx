@@ -11,16 +11,12 @@ export const DEMOS = [{
     "image": "/images/SciKitty.webp",
     "url": "/SciKitty/TreeBoosting",
   }, {
-    "name": "Scikitty Decision Stump",
-    "image": "/images/SciKitty.webp",
-    "url": "/SciKitty/DecisionStump",
-  }, {
     "name": "Scikitty Linear Regression",
-    "image": "/images/SciKitty.webp",
+    "image": "/images/ScikittyLinearRegression.webp",
     "url": "/SciKitty/LinearRegression",
   }, {
     "name": "Scikitty Logistic Regression",
-    "image": "/images/SciKitty.webp",
+    "image": "/images/ScikittyLinearRegression.webp",
     "url": "/SciKitty/LogisticRegression",
   }, {
     "name": "ChatGPT 2.0",

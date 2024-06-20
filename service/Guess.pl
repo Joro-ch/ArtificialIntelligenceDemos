@@ -24,10 +24,10 @@
     apply_horizontal_move/2,
     apply_vertical_move/2,
     generate_child_board/3,
-    goal_row/2,
+    goal_row/3,
     goal_reached/1,
     start_astar/1,
-    test_astar/6,
+    test_astar/7,
     astar/1,
     goal_search/1,
     goal_achieved/3,
@@ -56,14 +56,28 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 :- dynamic visited_board/1.
 :- dynamic goal_found/0.
+:- dynamic goal_board/1.
 :- dynamic goal_metrics/4.
 :- dynamic heuristics/3. 
+
+% Obtener el tablero objetivo
+get_goal_board(X) :-
+    goal_board(X).
 
 clear_visited_boards :-
     retractall(visited_board(_)).
 
 clear_goal_found :-
     retractall(goal_found).
+
+% Limpiar el tablero objetivo
+clear_goal_board :-
+    retractall(goal_board()).
+
+% Guardar el tablero objetivo
+save_goal_board(GoalBoard):-
+    retractall(goal_board()),
+    assert(goal_board(GoalBoard)).
 
 set_board_as_visited(BoardId) :-
     convert_board_to_list(BoardId, List),
@@ -78,6 +92,9 @@ is_board_visited(BoardId) :-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 :- dynamic(total_colum/1).
 :- dynamic(total_row/1).
+
+:- dynamic(goal_colums/1).
+:- dynamic(goal_rows/1).
 
 save_total_colum(X) :-
     retractall(total_colum(_)),
@@ -102,6 +119,40 @@ board_total_rows(BoardId, TotalRows) :-
     findall(RowIndex, board_row(BoardId, RowIndex, _), Rows),
     length(Rows, TotalRows),
 	save_total_row(TotalRows).
+
+% Guardar las columnas del objetivo
+save_goal_colums(X) :-
+    retractall(goal_colums(_)),
+    assert(goal_colums(X)).
+
+% Guardar las filas del objetivo
+save_goal_rows(X) :-
+    retractall(goal_rows(_)),
+    assert(goal_rows(X)).
+
+% Obtener las columnas del objetivo
+get_goal_colums(X) :-
+    goal_colums(X).
+
+% Obtener las filas del objetivo
+get_goal_rows(X) :-
+    goal_rows(X).
+
+% Obtener el tamaño de una fila del objetivo
+goal_row_size(BoardId, RowIndex, Size) :-
+    goal_row(BoardId, RowIndex, Row),
+    length(Row, Size),
+    save_goal_colums(Size).
+
+% Obtener el número total de filas del objetivo
+goal_total_rows(BoardId, TotalRows) :-
+    findall(RowIndex, goal_row(BoardId, RowIndex, _), Rows),
+    length(Rows, TotalRows),
+    save_goal_rows(TotalRows).
+
+% Obtener una fila del objetivo
+get_goal_row(BoardId, RowIndex, Row) :-
+    goal_row(BoardId, RowIndex, Row).
 	
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -113,17 +164,62 @@ create_board_from_list(List, BoardId) :-
 	board_total_rows(BoardId, _),
 	board_row_size(BoardId, 1, _).
 
+% Crear un tablero objetivo a partir de una lista
+create_goal_board_from_list(List, 'GOAL_1') :-
+    clear_goal_details('GOAL_1'),
+    enumerate(List, EnumeratedList),
+    forall(member(Row, EnumeratedList), add_row_to_goal('GOAL_1', Row)),
+    goal_total_rows('GOAL_1', _),
+    goal_row_size('GOAL_1', 1, _),
+    save_goal_board('GOAL_1'),
+    store_goal_positions.
+
 convert_board_to_list(BoardId, List) :-
     findall(Row, (board_row(BoardId, _, Row)), List).
 
 :- dynamic board_row/3.
 :- dynamic board_empty/3.
 
+:- dynamic goal_row/3.
+:- dynamic goal_empty/3.
+
+:- dynamic goal_position/2.
+
+% Guardar las posiciones del objetivo
+store_goal_positions :-
+    get_goal_board(Goal),
+    get_all_goal_rows(Goal, TotalRows),
+    forall(between(1, TotalRows, RowIndex),
+           (get_goal_row(Goal, RowIndex, Row),
+            store_row_positions(Row, RowIndex))).
+
+% Guardar las posiciones de una fila del objetivo
+store_row_positions(Row, RowIndex) :-
+    length(Row, TotalColumns),
+    forall(between(1, TotalColumns, ColIndex),
+           (nth1(ColIndex, Row, Value),
+            assert(goal_position(Value, [RowIndex, ColIndex])))).
+
+% Obtener todas las filas del objetivo
+get_all_goal_rows(Goal, TotalRows) :-
+    findall(RowIndex, get_goal_row(Goal, RowIndex, _), RowIndexes),
+    length(RowIndexes, TotalRows).
+
 generate_new_board_id(BoardId) :- new_id('board_', BoardId).
 
 clear_all_boards :-
     retractall(board_row(_, _, _)),
     retractall(board_empty(_, _, _)).
+
+% Limpiar el objetivo
+clear_goal :-
+    retractall(goal_row(_, _, _)),
+    retractall(goal_empty(_, _, _)).
+
+% Limpiar detalles de un objetivo específico
+clear_goal_details(BoardId) :-
+    retractall(goal_row(BoardId, _, _)),
+    retractall(goal_empty(BoardId, _, _)).
 
 clear_board(BoardId) :-
     retractall(board_row(BoardId, _, _)),
@@ -147,6 +243,16 @@ update_board_row(BoardId, RowIndex, UpdatedRow) :-
 add_empty_to_board(BoardId, RowIndex, ColIndex) :-
     retractall(board_empty(BoardId, _, _)),
     assert(board_empty(BoardId, RowIndex, ColIndex)).
+
+% Agregar una fila a un objetivo
+add_row_to_goal(BoardId, [RowIndex, Row]) :-
+    assert(goal_row(BoardId, RowIndex, Row)),
+    ( index_of(empty, Row, EmptyIndex) -> add_empty_to_goal(BoardId, RowIndex, EmptyIndex) ; true ).
+
+% Agregar un vacío a un objetivo
+add_empty_to_goal(BoardId, RowIndex, ColIndex) :-
+    retractall(goal_empty(BoardId, _, _)),
+    assert(goal_empty(BoardId, RowIndex, ColIndex)).
 
 get_valid_move(BoardId, Position, Direction) :-
     board_empty(BoardId, EmptyRow, EmptyCol),
@@ -189,20 +295,25 @@ generate_child_board(BoardId, ChildBoardId, Direction) :-
     clone_board(BoardId, ChildBoardId), 
     apply_move_to_board(ChildBoardId, Direction).
 
-goal_row(1, [1, 2, 3, 4]).
-goal_row(2, [5, 6, 7, 8]).
-goal_row(3, [9, 10, 11, 12]).
-goal_row(4, [13, 14, 15, empty]).
-
+% Verificar si se ha alcanzado el objetivo
 goal_reached(BoardId) :-
-    goal_row(1, GoalRow1),
-    goal_row(2, GoalRow2),
-    goal_row(3, GoalRow3),
-    goal_row(4, GoalRow4),
-    board_row(BoardId, 1, GoalRow1),
-    board_row(BoardId, 2, GoalRow2),
-    board_row(BoardId, 3, GoalRow3),
-    board_row(BoardId, 4, GoalRow4).
+    compare_all_rows(BoardId, 1).
+
+% Comparar todas las filas de un tablero
+compare_all_rows(BoardId, RowIndex) :-
+    get_goal_rows(TotalRows),
+    compare_rows(BoardId, RowIndex),
+    (RowIndex < TotalRows ->
+        NextIndex is RowIndex + 1,
+        compare_all_rows(BoardId, NextIndex)
+    ; true).
+
+% Comparar filas individuales
+compare_rows(BoardId, RowIndex) :-
+    get_goal_board(Goal),
+    get_goal_row(Goal, RowIndex, GoalRow),
+    board_row(BoardId, RowIndex, BoardRow),
+    GoalRow = BoardRow.
 
 start_astar(BoardId) :-
     clear_visited_boards,
@@ -268,10 +379,13 @@ display_search_state([ManhattanValue, EuclideanValue]) :-
     assert(heuristics(1, ManhattanValue, EuclideanValue))
 .
 
-test_astar(InitialBoard, Path, Depth, Goal, ManhattanValue, EuclideanValue) :-
+test_astar(InitialBoard, GoalBoard, Path, Depth, Goal, ManhattanValue, EuclideanValue) :-
     clear_visited_boards,
     clear_all_boards,
+    clear_goal_board,
+    clear_goal,
     create_board_from_list(InitialBoard, BoardId),
+    create_goal_board_from_list(GoalBoard, _),
     start_astar(BoardId),
     goal_metrics(1, Path, Depth, Goal),
     heuristics(1, ManhattanValue, EuclideanValue),

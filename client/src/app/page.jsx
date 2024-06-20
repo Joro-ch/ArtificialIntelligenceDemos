@@ -13,7 +13,7 @@ const Home = () => {
             Artificial intelligence employs various techniques to achieve its goals. Below, we{"'"}ll
             explore some demo tools that teach us and facilitate understanding of AI.
           </p>
-          <div className="flex flex-wrap gap-5 mt-5 justify-around">
+          <div className="flex flex-wrap gap-5 mt-5 justify-around mb-10">
             {DEMOS.map((demo, index) => (
               <ToolCard name={demo.name} image={demo.image} url={demo.url} key={index} />
             ))}

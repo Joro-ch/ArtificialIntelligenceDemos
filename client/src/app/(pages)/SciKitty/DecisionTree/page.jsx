@@ -1,3 +1,4 @@
+"use client";
 import SKTryDemo from "../../../components/SKComponents/SKTryDemo";
 import TopicHeader from "@/app/components/Topic/TopicHeader";
 
