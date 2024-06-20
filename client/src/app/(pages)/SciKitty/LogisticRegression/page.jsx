@@ -177,7 +177,7 @@ const LogisticRegression = ({ }) => {
                         {!loading ? (
                             <div className="flex justify-center gap-5">
                                 <button onClick={getImage} className="bg-green-500 w-1/3 rounded p-2 mt-3 hover:bg-green-700">
-                                    🚀 Send Dataset to Create the Linear Regression 🚀
+                                    🚀 Send Dataset to Create the Logistic Regression 🚀
                                 </button>
                                 <button onClick={getBrestCancer} className="bg-green-500 w-1/3 rounded p-2 mt-3 hover:bg-green-700">
                                     🚀 Try with Sklearn Breast Cancer Dataset 🚀
