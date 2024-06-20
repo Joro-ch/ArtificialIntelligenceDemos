@@ -4,11 +4,11 @@ export const ABOUT_US = {
         "name": "John Rojas Chinchilla",
         "email": "john.rojas.chinchilla@est.una.ac.cr",
     },{
-        "image": "/images/UserPhoto.webp",
+        "image": "/images/AbigailPhoto.webp",
         "name": "Abigail Salas Ramirez",
         "email": "abigail.salas.ramirez@est.una.ac.cr",
     },{
-        "image": "/images/UserPhoto.webp",
+        "image": "/images/AxelPhoto.webp",
         "name": "Axel Monge Ramirez",
         "email": "axel.monge.ramirez@est.una.ac.cr",
     },{

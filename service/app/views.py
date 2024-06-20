@@ -1,10 +1,19 @@
-import numpy as np
 import csv
+import numpy as np
+import pandas as pd
+import io
+import base64
+import matplotlib.pyplot as plt
+import seaborn as sns
 from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from scikitty.models.DecisionTree import DecisionTree
 from scikitty.view.TreeVisualizer import TreeVisualizer
+from scikitty.models.LinearRegression import LinearRegression
+from scikitty.models.LogisticRegression import LogisticRegression
+from scikitty.models.TreeBoosting import TreeBoosting
+from scikitty.models.DecisionStump import DecisionStump
 from scikitty.persist.TreePersistence import TreePersistence
 from scikitty.metrics.accuracy_score import puntuacion_de_exactitud
 from scikitty.metrics.precision_score import puntuacion_de_precision
@@ -15,10 +24,13 @@ from scikitty.model_selection.train_test_split import train_test_split
 from sklearn.tree import DecisionTreeClassifier, plot_tree
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import OneHotEncoder
-import pandas as pd
+from sklearn.preprocessing import StandardScaler, OneHotEncoder, LabelEncoder
+from sklearn.datasets import fetch_california_housing
 
 # Create your views here.
+
+# Cambiar el backend de matplotlib a 'Agg' para evitar problemas de interfaz gráfica
+plt.switch_backend('Agg')
 
 
 @api_view(['POST'])
@@ -46,6 +58,144 @@ def sklearn_dt(request):
     return Response(metrics)
 
 
+@api_view(['POST'])
+def scikitty_linear_regression(request):
+    data = request.data
+    file_name = data.get('fileName')
+    csv_data = data.get('csv')
+    feature_target = data.get('featureTarget')
+    create_csv(csv_data, file_name)
+    mse, plot_base64 = _create_classification_model(file_name, feature_target)
+    return Response({"mse": mse, "plot": plot_base64})
+
+@api_view(['POST'])
+def scikitty_logistic_regression(request):
+    data = request.data
+    file_name = data.get('fileName')
+    csv_data = data.get('csv')
+    feature_target = data.get('featureTarget')
+    create_csv(csv_data, file_name)
+    accuracy, precision, recall, f1, plot_base64 = _create_logistic_classification_model(file_name, feature_target)
+    return Response({"accuracy": accuracy, "precision": precision, "recall": recall, "f1": f1, "plot": plot_base64})
+
+def _create_logistic_classification_model(file_name, target_column):
+    # Cargar los datos desde el archivo CSV
+    df = pd.read_csv(f'{file_name}.csv')
+
+    # Separar características y objetivo
+    X = df.drop(target_column, axis=1)
+    y = df[target_column]
+
+    # Codificar variables categóricas en características
+    encoder = OneHotEncoder()
+    X = encoder.fit_transform(X).toarray()
+
+    # Codificar la columna objetivo
+    label_encoder = LabelEncoder()
+    y = label_encoder.fit_transform(y)
+
+    # Normalizar las características
+    scaler = StandardScaler()
+    X = scaler.fit_transform(X)
+
+    # Dividir el dataset en conjuntos de entrenamiento y prueba
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+    # Instanciar y entrenar el modelo de clasificación
+    model = LogisticRegression()
+    model.fit(X_train, y_train)
+
+    # Realizar predicciones sobre el conjunto de prueba
+    predictions = model.predict(X_test)
+
+    # Evaluar el modelo utilizando diferentes métricas de rendimiento
+    accuracy = accuracy_score(y_test, predictions)
+    precision = precision_score(y_test, predictions)
+    recall = recall_score(y_test, predictions)
+    f1 = f1_score(y_test, predictions)
+
+    print(f"Accuracy: {accuracy}")
+    print(f"Precision: {precision}")
+    print(f"Recall: {recall}")
+    print(f"F1 Score: {f1}")
+
+    # Generar la matriz de confusión
+    cm = confusion_matrix(y_test, predictions)
+    plt.figure(figsize=(10, 6))
+    cm_display = sns.heatmap(cm, annot=True, cmap='Blues', fmt='g')
+
+    print("VISUALIZANDO MATRIZ DE CONFUSIÓN 1 = positivo, 0 = negativo")
+
+    # Configurar etiquetas de los ejes
+    cm_display.set_xlabel('Predicted Labels')
+    cm_display.set_ylabel('True Labels')
+    cm_display.set_title('Confusion Matrix')
+
+    # Guardar la imagen en un buffer de bytes
+    buffer = io.BytesIO()
+    plt.savefig(buffer, format='png')
+    buffer.seek(0)
+    plot_base64 = base64.b64encode(buffer.read()).decode('utf-8')
+    buffer.close()
+
+    # Cerrar la figura para liberar la memoria
+    plt.close()
+
+    return accuracy, precision, recall, f1, plot_base64
+
+def _create_classification_model(file_name, target_column):
+    # Cargar los datos desde el archivo CSV
+    df = pd.read_csv(f'{file_name}.csv')
+
+    # Separar características y objetivo
+    X = df.drop(target_column, axis=1)
+    y = df[target_column]
+
+    # Codificar variables categóricas en características
+    encoder = OneHotEncoder()
+    X = encoder.fit_transform(X).toarray()
+
+    # Codificar la columna objetivo
+    label_encoder = LabelEncoder()
+    y = label_encoder.fit_transform(y)
+
+    # Normalizar las características
+    scaler = StandardScaler()
+    X = scaler.fit_transform(X)
+
+    # Dividir el dataset en conjuntos de entrenamiento y prueba
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+    # Instanciar y entrenar el modelo de clasificación
+    model = LogisticRegression()
+    model.fit(X_train, y_train)
+
+    # Realizar predicciones sobre el conjunto de prueba
+    predictions = model.predict(X_test)
+
+    # Evaluar el modelo utilizando la precisión (accuracy)
+    accuracy = accuracy_score(y_test, predictions)
+    print(f"Accuracy: {accuracy}")
+
+    # Visualizar las predicciones vs los valores reales y guardar la imagen en un buffer
+    plt.figure(figsize=(10, 6))
+    plt.scatter(y_test, predictions)
+    plt.xlabel("True Values")
+    plt.ylabel("Predictions")
+    plt.title("True Values vs Predictions")
+
+    # Guardar la imagen en un buffer de bytes
+    buffer = io.BytesIO()
+    plt.savefig(buffer, format='png')
+    buffer.seek(0)
+    plot_base64 = base64.b64encode(buffer.read()).decode('utf-8')
+    buffer.close()
+
+    # Cerrar la figura para liberar la memoria
+    plt.close()
+
+    return accuracy, plot_base64
+
 def create_csv(data, file):
     csv_filename = file + ".csv"
     with open(csv_filename, 'w', newline='') as file:
@@ -61,8 +211,6 @@ def create_tree(file_name, featureTarget, criterion):
     # Preparar los datos.
     features = data.drop(featureTarget, axis=1)
     labels = data[featureTarget]
-
-    print(labels)
 
     # Dividir los datos.
     X_train, X_test, y_train, y_test = train_test_split(
@@ -99,7 +247,8 @@ def create_tree(file_name, featureTarget, criterion):
         conf_mat, classes = _scikitty_confusion_matrix(y_test, y_pred)
 
         # Crear la matriz con los títulos
-        conf_mat_with_titles = _create_confusion_matrix_with_titles(conf_mat, classes)
+        conf_mat_with_titles = _create_confusion_matrix_with_titles(
+            conf_mat, classes)
 
         # Imprimir la matriz con títulos
         print(conf_mat_with_titles)
@@ -179,7 +328,8 @@ def create_sklearn_dt(file_name, featureTarget, criterion):
     conf_matrix = confusion_matrix(y_test, y_pred)
 
     # Crear la matriz con los títulos
-    conf_mat_with_titles = _create_confusion_matrix_with_titles(conf_matrix, dt.classes_)
+    conf_mat_with_titles = _create_confusion_matrix_with_titles(
+        conf_matrix, dt.classes_)
 
     # Imprimir la matriz con títulos
     print(conf_mat_with_titles)
