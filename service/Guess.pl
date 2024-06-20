@@ -380,17 +380,25 @@ display_search_state([ManhattanValue, EuclideanValue]) :-
     assert(heuristics(1, ManhattanValue, EuclideanValue))
 .
 
+% Verificar si un tablero es solucionable
 check_solvable(Board) :-
-    flatten(Board, FlatBoard),
-    exclude(=(empty), FlatBoard, NumberedTiles),
-    count_inversions(NumberedTiles, _),
-    ( true
-    ; abort
-    ).
+   (is_3x3_board(Board) ->
+        flatten(Board, FlatBoard),
+        exclude(=(empty), FlatBoard, NumberedTiles),
+        count_inversions(NumberedTiles, InversionCount),
+        ( 0 is InversionCount mod 2 -> true
+        ; abort
+        )
+    ; true).
 
 count_inversions(List, Count) :-
     findall(1, (nth1(I, List, X), nth1(J, List, Y), I < J, X > Y), Inversions),
     length(Inversions, Count).
+
+% Verificar si un tablero es de 3x3
+is_3x3_board(Board) :-
+    length(Board, 3),
+    forall(member(Row, Board), length(Row, 3)).
 
 test_astar(InitialBoard, GoalBoard, Path, Depth, Goal, ManhattanValue, EuclideanValue) :-
     clear_visited_boards,
