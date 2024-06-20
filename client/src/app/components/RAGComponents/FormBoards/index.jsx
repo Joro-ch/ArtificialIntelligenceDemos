@@ -10,14 +10,15 @@ const GOAL_BOARD_INDENTIFIER = 'gb';
 const FormBoards = ({ boardSize, setBoardData }) => {
     const [isLoading, setIsLoading] = useState(false);
 
-    const getRetraigoData = async (board) => {
+    const getRetraigoData = async (initialBoard, goalBoard) => {
         const response = await fetch('/api/retraigo', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                "board": board
+                "board": initialBoard,
+                "goal": goalBoard
             }),
         });
 
@@ -36,9 +37,8 @@ const FormBoards = ({ boardSize, setBoardData }) => {
             const formData = new FormData(e.target);
             const initialBoard = getFormBoard(formData, INITIAL_BOARD_INDENTIFIER);
             const goalBoard = getFormBoard(formData, GOAL_BOARD_INDENTIFIER);
-            //const boardData = await getRetraigoData(board);
-            //console.log(boardData);
-            //setBoardData(boardData);
+            const boardData = await getRetraigoData(initialBoard, goalBoard);
+            setBoardData(boardData);
         }
         catch (e) {
             if (e instanceof TypeError) {

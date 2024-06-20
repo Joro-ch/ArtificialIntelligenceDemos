@@ -31,6 +31,7 @@
     astar/1,
     goal_search/1,
     goal_achieved/3,
+    goal_position/2,
     process_board/5,
     expand_children/6,
     display_search_state/1,
@@ -379,6 +380,18 @@ display_search_state([ManhattanValue, EuclideanValue]) :-
     assert(heuristics(1, ManhattanValue, EuclideanValue))
 .
 
+check_solvable(Board) :-
+    flatten(Board, FlatBoard),
+    exclude(=(empty), FlatBoard, NumberedTiles),
+    count_inversions(NumberedTiles, InversionCount),
+    ( true
+    ; abort
+    ).
+
+count_inversions(List, Count) :-
+    findall(1, (nth1(I, List, X), nth1(J, List, Y), I < J, X > Y), Inversions),
+    length(Inversions, Count).
+
 test_astar(InitialBoard, GoalBoard, Path, Depth, Goal, ManhattanValue, EuclideanValue) :-
     clear_visited_boards,
     clear_all_boards,
@@ -386,6 +399,7 @@ test_astar(InitialBoard, GoalBoard, Path, Depth, Goal, ManhattanValue, Euclidean
     clear_goal,
     create_board_from_list(InitialBoard, BoardId),
     create_goal_board_from_list(GoalBoard, _),
+    % check_solvable(BoardId),
     start_astar(BoardId),
     goal_metrics(1, Path, Depth, Goal),
     heuristics(1, ManhattanValue, EuclideanValue),

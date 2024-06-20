@@ -12,7 +12,7 @@ export const ABOUT_US = {
         "name": "Axel Monge Ramirez",
         "email": "axel.monge.ramirez@est.una.ac.cr",
     },{
-        "image": "/images/UserPhoto.webp",
+        "image": "/images/AndrelPhoto.webp",
         "name": "Andrel Ramirez Solis",
         "email": "andrel.ramirez.solis@est.una.ac.cr",
     },],

@@ -6,7 +6,7 @@
         "Overcast"
     ],
     "etiqueta": "Yes",
-    "impureza": 0.9456603046006401,
+    "impureza": 0.4628099173553719,
     "etiquetas": [
         "Yes",
         "No",
@@ -25,7 +25,7 @@
         "es_hoja": true,
         "regla": null,
         "etiqueta": "Yes",
-        "impureza": -0.0,
+        "impureza": 0.0,
         "etiquetas": [
             "Yes",
             "Yes",
@@ -41,7 +41,7 @@
             "High"
         ],
         "etiqueta": "No",
-        "impureza": 1.0,
+        "impureza": 0.5,
         "etiquetas": [
             "No",
             "Yes",
@@ -61,7 +61,7 @@
                 "Rain"
             ],
             "etiqueta": "No",
-            "impureza": 0.8112781244591328,
+            "impureza": 0.375,
             "etiquetas": [
                 "No",
                 "No",
@@ -77,7 +77,7 @@
                     "Strong"
                 ],
                 "etiqueta": "No",
-                "impureza": 1.0,
+                "impureza": 0.5,
                 "etiquetas": [
                     "No",
                     "Yes"
@@ -87,7 +87,7 @@
                     "es_hoja": true,
                     "regla": null,
                     "etiqueta": "No",
-                    "impureza": -0.0,
+                    "impureza": 0.0,
                     "etiquetas": [
                         "No"
                     ],
@@ -97,7 +97,7 @@
                     "es_hoja": true,
                     "regla": null,
                     "etiqueta": "Yes",
-                    "impureza": -0.0,
+                    "impureza": 0.0,
                     "etiquetas": [
                         "Yes"
                     ],
@@ -108,7 +108,7 @@
                 "es_hoja": true,
                 "regla": null,
                 "etiqueta": "No",
-                "impureza": -0.0,
+                "impureza": 0.0,
                 "etiquetas": [
                     "No",
                     "No"
@@ -124,7 +124,7 @@
                 "Rain"
             ],
             "etiqueta": "Yes",
-            "impureza": 0.8112781244591328,
+            "impureza": 0.375,
             "etiquetas": [
                 "No",
                 "Yes",
@@ -140,7 +140,7 @@
                     "Strong"
                 ],
                 "etiqueta": "No",
-                "impureza": 1.0,
+                "impureza": 0.5,
                 "etiquetas": [
                     "No",
                     "Yes"
@@ -150,7 +150,7 @@
                     "es_hoja": true,
                     "regla": null,
                     "etiqueta": "No",
-                    "impureza": -0.0,
+                    "impureza": 0.0,
                     "etiquetas": [
                         "No"
                     ],
@@ -160,7 +160,7 @@
                     "es_hoja": true,
                     "regla": null,
                     "etiqueta": "Yes",
-                    "impureza": -0.0,
+                    "impureza": 0.0,
                     "etiquetas": [
                         "Yes"
                     ],
@@ -171,7 +171,7 @@
                 "es_hoja": true,
                 "regla": null,
                 "etiqueta": "Yes",
-                "impureza": -0.0,
+                "impureza": 0.0,
                 "etiquetas": [
                     "Yes",
                     "Yes"

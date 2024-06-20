@@ -2,7 +2,9 @@ import RAGTryDemo from "@/app/components/RAGComponents/RAGTryDemo";
 import TopicHeader from "@/app/components/Topic/TopicHeader";
 
 const DESC = `
-    A K-puzzle AI game.
+    Rule-Based AI with informed search uses predefined rules and heuristics 
+    to make decisions and solve problems. It applies informed search strategies 
+    to navigate through the solution space efficiently.
 `
 
 const RetrAiGo = ({ }) => {

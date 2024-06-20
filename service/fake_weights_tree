@@ -1,0 +1,39 @@
+digraph {
+	hoja_1667362464192 [label="entropy:-0.0
+muestras: 1
+valor: [0, 0, 0, 1]
+clase: e6" fillcolor="#ffa500" shape=box style=filled]
+	decision_1667362205952 -> hoja_1667362464192 [label=True]
+	hoja_1667362209408 [label="entropy:-0.0
+muestras: 1
+valor: [1, 0, 0, 0]
+clase: e3" fillcolor="#ffa500" shape=box style=filled]
+	decision_1667362205952 -> hoja_1667362209408 [label=False]
+	decision_1667362205952 [label="Height <= 1.45
+entropy:1.0
+muestras: 2
+valor: [1, 0, 0, 1]
+clase: e3" fillcolor="#5a9ad5" shape=box style=filled]
+	decision_1667363154944 -> decision_1667362205952 [label=True]
+	hoja_1667361865856 [label="entropy:-0.0
+muestras: 1
+valor: [0, 0, 1, 0]
+clase: e5" fillcolor="#ffa500" shape=box style=filled]
+	decision_1667363151936 -> hoja_1667361865856 [label=True]
+	hoja_1667362229696 [label="entropy:-0.0
+muestras: 1
+valor: [0, 1, 0, 0]
+clase: e4" fillcolor="#ffa500" shape=box style=filled]
+	decision_1667363151936 -> hoja_1667362229696 [label=False]
+	decision_1667363151936 [label="Color == green
+entropy:1.0
+muestras: 2
+valor: [0, 1, 1, 0]
+clase: e4" fillcolor="#5a9ad5" shape=box style=filled]
+	decision_1667363154944 -> decision_1667363151936 [label=False]
+	decision_1667363154944 [label="Color == blue
+entropy:2.0
+muestras: 4
+valor: [1, 1, 1, 1]
+clase: e3" fillcolor="#5a9ad5" shape=box style=filled]
+}

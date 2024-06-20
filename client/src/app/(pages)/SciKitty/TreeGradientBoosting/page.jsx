@@ -10,10 +10,14 @@ import { toast } from "sonner";
 import { DATASETS } from "@/app/constants/DATASETS";
 
 const DESC = `
-    A package inspired by the widely used Scikit Learn.
+    Tree Gradient Boosting is an ensemble learning technique that combines multiple 
+    decision trees to improve predictive performance. It is constructed using a version 
+    of a decision tree with a height of 1, without numerizing or encoding categorical variables. 
+    The training process involves building trees sequentially, where each tree corrects 
+    the errors of the previous one.
 `
 
-const TreeBoosting = ({ }) => {
+const TreeGradientBoosting = ({ }) => {
     const [csvData, setCSVData] = useState([]);
     const [values, setValues] = useState({});
     const [questionTarget, setQuestionTarget] = useState("");
@@ -177,11 +181,6 @@ const TreeBoosting = ({ }) => {
                         <>
                             <Metrics metrics={metrics} title={"Scikitty"} showIsBalanced={false} />
                             <Metrics metrics={skMetrics} title={"Sklearn"} showIsBalanced={false} />
-                            <DoQuestion
-                                values={values}
-                                questionTarget={questionTarget}
-                                fileName={fileName}
-                            />
                         </>
                     )}
                 </section>
@@ -190,4 +189,4 @@ const TreeBoosting = ({ }) => {
     )
 }
 
-export default TreeBoosting;
+export default TreeGradientBoosting;

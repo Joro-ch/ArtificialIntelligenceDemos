@@ -7,6 +7,7 @@ import DoQuestion from "../DoQuestion";
 import { useState } from "react";
 import { toast } from "sonner";
 import { DATASETS } from "@/app/constants/DATASETS";
+import Image from "next/image";
 
 const SKTryDemo = ({ }) => {
     const [csvData, setCSVData] = useState([]);
@@ -42,6 +43,7 @@ const SKTryDemo = ({ }) => {
     };
 
     const initParams = (newDataSet) => {
+        if(newDataSet.data.length == 0) return
         const header = newDataSet.data[0];
         const dataWithOutHeader = newDataSet.data.slice(1);
         setQuestionTarget(header[0]);
@@ -169,6 +171,22 @@ const SKTryDemo = ({ }) => {
                 <>
                     <Metrics metrics={metrics} title={"Scikitty"} showIsBalanced={true} />
                     <Metrics metrics={skMetrics} title={"Sklearn"} showIsBalanced={false} />
+                    <div className="bg-gray-800 mt-3 p-10 rounded border border-gray-700 flex justify-around gap-5">
+                        <Image
+                            width={3200}
+                            height={1600}
+                            src={`data:image/png;base64,${metrics.plot_base64}`}
+                            alt="Plot"
+                            className="w-1/3"
+                        />
+                        <Image
+                            width={3200}
+                            height={1600}
+                            src={`data:image/png;base64,${skMetrics.plot_base64}`}
+                            alt="Plot"
+                            className="w-2/3"
+                        />
+                    </div>
                     <DoQuestion
                         values={values}
                         questionTarget={questionTarget}

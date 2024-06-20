@@ -1,3 +1,4 @@
+import Image from "next/image";
 
 const Metrics = ({ metrics, title, showIsBalanced }) => {
     return (
@@ -24,7 +25,7 @@ const Metrics = ({ metrics, title, showIsBalanced }) => {
                     </span>
                 )}
                 <span>
-                    Train Features:
+                    Predicted Features:
                     <>
                         {" ["}
                         {metrics.features.map((item, index) =>

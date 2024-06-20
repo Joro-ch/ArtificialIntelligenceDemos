@@ -10,7 +10,11 @@ import Image from "next/image";
 import { toast } from "sonner";
 
 const DESC = `
-    A packa
+    Logistic Regression is a classification algorithm used to predict the 
+    probability of a binary outcome. The preferred dataset for testing is 
+    Breast Cancer due to its suitability for binary classification problems. 
+    It models the relationship between a dependent variable and one or more 
+    independent variables using a logistic function.
 `
 
 const LogisticRegression = ({ }) => {
@@ -111,6 +115,35 @@ const LogisticRegression = ({ }) => {
         }
     }
 
+    const getBrestCancer = async () => {
+        try {
+            setLoading(true);
+            const response = await fetch('http://127.0.0.1:8000/api/scikitty_breast_cancer/', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            if (response.ok) {
+                const result = await response.json();
+                setResult(result);
+            } else {
+                throw new Error(`Server Error: ${response.status} ${response.statusText}`);
+            }
+        } catch (error) {
+            if (e instanceof TypeError) {
+                toast.error('Error!', { description: "Server not online!" });
+            }
+            else {
+                toast.error('Error!', { description: e.message });
+            }
+        }
+        finally {
+            setLoading(false);
+        }
+    }
+
     return (
         <main>
             <article className="text-[#ffffff] pb-10">
@@ -142,9 +175,12 @@ const LogisticRegression = ({ }) => {
                             </div>
                         )}
                         {!loading ? (
-                            <div className="flex justify-center">
+                            <div className="flex justify-center gap-5">
                                 <button onClick={getImage} className="bg-green-500 w-1/3 rounded p-2 mt-3 hover:bg-green-700">
                                     🚀 Send Dataset to Create the Linear Regression 🚀
+                                </button>
+                                <button onClick={getBrestCancer} className="bg-green-500 w-1/3 rounded p-2 mt-3 hover:bg-green-700">
+                                    🚀 Try with Sklearn Breast Cancer Dataset 🚀
                                 </button>
                             </div>
                         ) : (

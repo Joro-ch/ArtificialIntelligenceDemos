@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 import io
 import base64
+from base64 import b64encode
 import matplotlib.pyplot as plt
 import seaborn as sns
 from django.shortcuts import render
@@ -26,6 +27,7 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_sc
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler, OneHotEncoder, LabelEncoder
 from sklearn.datasets import fetch_california_housing
+from sklearn.datasets import load_breast_cancer
 
 # Create your views here.
 
@@ -90,6 +92,171 @@ def scikitty_tree_boosting(request):
     create_csv(csv_data, file_name)
     metrics = _create_tree_boosting(file_name, feature_target, criterion)
     return Response(metrics)
+
+
+@api_view(['GET'])
+def scikitty_breast_cancer(request):
+    accuracy, precision, recall, f1, plot_base64 = _create_logistic_regression_breast_cancer()
+    return Response({"accuracy": accuracy, "precision": precision, "recall": recall, "f1": f1, "plot": plot_base64})
+
+
+@api_view(['GET'])
+def scikitty_california_housing(request):
+    mse, plot_base64 = _create_linear_regression_california_housing()
+    return Response({"mse": mse, "plot": plot_base64})
+
+
+def _create_linear_regression_california_housing():
+    # Cargar el dataset de California Housing
+    california = fetch_california_housing()
+    X, y = california.data, california.target
+
+    # Normalizar los datos para mejorar la convergencia del gradiente descendente
+    scaler = StandardScaler()
+    X = scaler.fit_transform(X)
+
+    # Dividir el dataset en conjuntos de entrenamiento y prueba
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+    # Instanciar y entrenar el modelo
+    model = LinearRegression()
+    model.fit(X_train, y_train)
+
+    # Realizar predicciones sobre el conjunto de prueba
+    predictions = model.predict(X_test)
+
+    # Evaluar el modelo utilizando el Error Cuadrático Medio (MSE), entre más cercano a 0, mejor desempeño del modelo
+    mse = np.mean((predictions - y_test) ** 2)
+    print(f"Mean Squared Error: {mse}")
+
+    # Visualizar las predicciones vs los valores reales y guardar la imagen en un buffer
+    plt.figure(figsize=(10, 6))
+    plt.scatter(y_test, predictions)
+    plt.xlabel("True Values")
+    plt.ylabel("Predictions")
+    plt.title("True Values vs Predictions")
+
+    # Guardar la imagen en un buffer de bytes
+    buffer = io.BytesIO()
+    plt.savefig(buffer, format='png')
+    buffer.seek(0)
+    plot_base64 = base64.b64encode(buffer.read()).decode('utf-8')
+    buffer.close()
+
+    # Cerrar la figura para liberar la memoria
+    plt.close()
+
+    return mse, plot_base64
+
+# def _create_linear_regression_california_housing():
+
+#     # Cargar el dataset de California Housing
+#     california = fetch_california_housing()
+#     X, y = california.data, california.target
+
+#     # Normalizar los datos para mejorar la convergencia del gradiente descendente
+#     scaler = StandardScaler()
+#     X = scaler.fit_transform(X)
+
+#     # Dividir el dataset en conjuntos de entrenamiento y prueba
+#     X_train, X_test, y_train, y_test = train_test_split(
+#         X, y, test_size=0.2, random_state=42)
+
+#     # Instanciar y entrenar el modelo
+#     model = LinearRegression()
+#     model.fit(X_train, y_train)
+
+#     # Realizar predicciones sobre el conjunto de prueba
+#     predictions = model.predict(X_test)
+
+#     # Convertir los valores reales y predicciones en categorías discretas
+#     bins = np.linspace(min(y_test), max(y_test), 5)
+#     y_test_binned = np.digitize(y_test, bins)
+#     predictions_binned = np.digitize(predictions, bins)
+
+#     # Generar la matriz de confusión
+#     cm = confusion_matrix(y_test_binned, predictions_binned)
+#     plt.figure(figsize=(10, 6))
+#     cm_display = sns.heatmap(cm, annot=True, cmap='Blues', fmt='g')
+
+#     # Evaluar el modelo utilizando el Error Cuadrático Medio (MSE), entre más cercano a 0, mejor desempeño del modelo
+#     mse = np.mean((predictions - y_test) ** 2)
+#     print(f"Mean Squared Error: {mse}")
+
+#     print("VISUALIZANDO MATRIZ DE CONFUSIÓN")
+
+#     # Configurar etiquetas de los ejes
+#     cm_display.set_xlabel('Predicted Labels')
+#     cm_display.set_ylabel('True Labels')
+#     cm_display.set_title('Confusion Matrix')
+
+#     # Guardar la imagen en un buffer de bytes
+#     buffer = io.BytesIO()
+#     plt.savefig(buffer, format='png')
+#     buffer.seek(0)
+#     plot_base64 = base64.b64encode(buffer.read()).decode('utf-8')
+#     buffer.close()
+
+#     # Cerrar la figura para liberar la memoria
+#     plt.close()
+
+#     return mse, plot_base64
+
+
+def _create_logistic_regression_breast_cancer():
+    # Cargar el dataset de Breast Cancer
+    data = load_breast_cancer()
+    X, y = data.data, data.target
+
+    # Normalizar los datos para mejorar la convergencia del gradiente descendente
+    scaler = StandardScaler()
+    X = scaler.fit_transform(X)
+
+    # Dividir el dataset en conjuntos de entrenamiento y prueba
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.2, random_state=42)
+
+    # Instanciar y entrenar el modelo
+    model = LogisticRegression(learning_rate=0.01, n_iterations=1000)
+    model.fit(X_train, y_train)
+
+    # Realizar predicciones sobre el conjunto de prueba
+    predictions = model.predict(X_test)
+
+    # Evaluar el modelo utilizando diferentes métricas de rendimiento
+    accuracy = accuracy_score(y_test, predictions)
+    precision = precision_score(y_test, predictions)
+    recall = recall_score(y_test, predictions)
+    f1 = f1_score(y_test, predictions)
+
+    print(f"Accuracy: {accuracy}")
+    print(f"Precision: {precision}")
+    print(f"Recall: {recall}")
+    print(f"F1 Score: {f1}")
+
+    # Generar la matriz de confusión
+    cm = confusion_matrix(y_test, predictions)
+    plt.figure(figsize=(10, 6))
+    cm_display = sns.heatmap(cm, annot=True, cmap='Blues', fmt='g')
+
+    print("VISUALIZANDO MATRIZ DE CONFUSIÓN 1 = positivo, 0 = negativo")
+
+    # Configurar etiquetas de los ejes
+    cm_display.set_xlabel('Predicted Labels')
+    cm_display.set_ylabel('True Labels')
+    cm_display.set_title('Confusion Matrix')
+
+    # Guardar la imagen en un buffer de bytes
+    buffer = io.BytesIO()
+    plt.savefig(buffer, format='png')
+    buffer.seek(0)
+    plot_base64 = base64.b64encode(buffer.read()).decode('utf-8')
+    buffer.close()
+
+    # Cerrar la figura para liberar la memoria
+    plt.close()
+
+    return accuracy, precision, recall, f1, plot_base64
 
 
 def _create_tree_boosting(file_name, feature_target, criterion):
@@ -304,10 +471,14 @@ def create_tree(file_name, featureTarget, criterion):
     def test_tree(dt, file_name, X_test, y_test):
 
         # Visualizar el árbol.
-        # tree_structure = dt.get_tree_structure()
-        # visualizer = TreeVisualizer()
-        # visualizer.graph_tree(tree_structure)
-        # visualizer.get_graph(f'{file_name}_tree', ver=True)
+        tree_structure = dt.get_tree_structure()
+        visualizer = TreeVisualizer()
+        visualizer.graph_tree(tree_structure)
+        visualizer.get_graph(f'{file_name}_tree', ver=False)
+
+        # Convertir la imagen a base64
+        with open(f'{file_name}_tree.png', 'rb') as img_file:
+            img_base64 = b64encode(img_file.read()).decode('utf-8')
 
         # Imprimir resultados.
         y_pred = dt.predict(X_test)
@@ -350,6 +521,7 @@ def create_tree(file_name, featureTarget, criterion):
             "features": y_pred,
             "real_features": y_test.tolist(),
             "is_balanced": dt.is_balanced(),
+            "plot_base64": img_base64
         }
         return metrics
 
@@ -375,7 +547,6 @@ def create_sklearn_dt(file_name, featureTarget, criterion):
     data = pd.read_csv(f'{file_name}.csv')
 
     # Preparar los datos.
-    # Asume que 'Play Tennis' es la columna objetivo
     features = data.drop(featureTarget, axis=1)
     labels = data[featureTarget]
 
@@ -391,6 +562,16 @@ def create_sklearn_dt(file_name, featureTarget, criterion):
     dt = DecisionTreeClassifier(
         criterion=criterion, min_samples_split=2, max_depth=5, random_state=42)
     dt.fit(X_train, y_train)
+
+    # Visualizar el árbol.
+    plt.figure(figsize=(10, 6))
+    plot_tree(dt, feature_names=encoder.get_feature_names_out(
+    ).tolist(), class_names=dt.classes_.tolist(), filled=True)
+    plt.savefig(f'{file_name}_tree-scikitlearn.png')
+
+    # Convertir la imagen a base64
+    with open(f'{file_name}_tree-scikitlearn.png', 'rb') as img_file:
+        img_base64 = b64encode(img_file.read()).decode('utf-8')
 
     # Imprimir resultados.
     y_pred = dt.predict(X_test)
@@ -429,6 +610,7 @@ def create_sklearn_dt(file_name, featureTarget, criterion):
         "conf_matrix": conf_mat_with_titles,
         "features": y_pred,
         "real_features": y_test.tolist(),
+        "plot_base64": img_base64
     }
     return metrics
 
@@ -470,6 +652,6 @@ def _create_confusion_matrix_with_titles(confusion_mat, classes):
     mat_with_titles[1:, 1:] = confusion_mat
 
     # El título de la esquina superior izquierda puede dejarse vacío
-    mat_with_titles[0, 0] = ""
+    mat_with_titles[0, 0] = "Down: Real / Right: Predicted"
 
     return mat_with_titles

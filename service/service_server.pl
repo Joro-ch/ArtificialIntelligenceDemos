@@ -26,9 +26,10 @@ http:cors_enable([
 handle_request(Request) :-
     cors_enable,
     http_read_json_dict(Request, Dict),
-    _{board: JsonBoard} :< Dict,
+    _{board: JsonBoard, goal: JsonGoalBoard} :< Dict,
     json_to_prolog_board(JsonBoard, Board),
-    test_astar(Board, Path, Depth, Goal, ManhattanValue, EuclideanValue),
+    json_to_prolog_board(JsonGoalBoard, GoalBoard),
+    test_astar(Board, GoalBoard, Path, Depth, Goal, ManhattanValue, EuclideanValue),
     reply_json_dict(_{path: Path, depth: Depth, goal: Goal, manhattanValue: ManhattanValue, euclideanValue: EuclideanValue}).
 
 json_to_prolog_board(JsonBoard, Board) :-

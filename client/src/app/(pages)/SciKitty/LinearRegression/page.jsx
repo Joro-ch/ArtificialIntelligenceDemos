@@ -1,16 +1,19 @@
 "use client";
 import TopicHeader from "@/app/components/Topic/TopicHeader";
 import Papa from "papaparse";
+import UploadCSV from "@/app/components/SKComponents/UploadCSV";
+import Image from "next/image";
 import { useState } from "react";
 import { DATASETS } from "@/app/constants/DATASETS";
-import UploadCSV from "@/app/components/SKComponents/UploadCSV";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
-import Image from "next/image";
 import { toast } from "sonner";
 
 const DESC = `
-    A package inspired by the widely used Scikit Learn.
+    Linear Regression is a statistical method used to model the relationship between 
+    a dependent variable and one or more independent variables. The preferred dataset 
+    for testing is California Housing because it represents a problem that can be decomposed 
+    into a linear trend. It predicts outcomes by fitting a linear equation to the observed data.
 `
 
 const LinearRegression = ({ }) => {
@@ -111,6 +114,35 @@ const LinearRegression = ({ }) => {
         }
     }
 
+    const getCaliforniaHousing = async () => {
+        try {
+            setLoading(true);
+            const response = await fetch('http://127.0.0.1:8000/api/scikitty_california_housing/', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            if (response.ok) {
+                const result = await response.json();
+                setResult(result);
+            } else {
+                throw new Error(`Server Error: ${response.status} ${response.statusText}`);
+            }
+        } catch (error) {
+            if (e instanceof TypeError) {
+                toast.error('Error!', { description: "Server not online!" });
+            }
+            else {
+                toast.error('Error!', { description: e.message });
+            }
+        }
+        finally {
+            setLoading(false);
+        }
+    }
+
     return (
         <main>
             <article className="text-[#ffffff] pb-10">
@@ -142,9 +174,12 @@ const LinearRegression = ({ }) => {
                             </div>
                         )}
                         {!loading ? (
-                            <div className="flex justify-center">
+                            <div className="flex justify-center gap-5">
                                 <button onClick={getImage} className="bg-green-500 w-1/3 rounded p-2 mt-3 hover:bg-green-700">
                                     🚀 Send Dataset to Create the Linear Regression 🚀
+                                </button>
+                                <button onClick={getCaliforniaHousing} className="bg-green-500 w-1/3 rounded p-2 mt-3 hover:bg-green-700">
+                                    🚀 Try with Sklearn California Housing Dataset 🚀
                                 </button>
                             </div>
                         ) : (
